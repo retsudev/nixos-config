@@ -11,6 +11,8 @@
 	catppuccin = {
 	  enable = true;
 	  autoEnable = true;
+	  flavor = "mocha";
+	  accent = "green";
 	};
 
 	home.packages = with pkgs; [
@@ -140,6 +142,17 @@
 	    return {
 	      "catppuccin/nvim",
 	      opts = { flavour = "mocha" },
+	    }
+	  '';
+	  plugins.blink = ''
+	    return {
+	      "saghen/blink.cmp",
+	      opts = {
+	        keymap = { preset = "super-tab" },
+		completion = {
+		  ghost_text = { enabled = false },
+		},
+	      },
 	    }
 	  '';
 

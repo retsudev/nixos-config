@@ -113,6 +113,10 @@
 		
 	programs.kitty = {
 	  enable = true;
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 12;
+    };
 	};
 
 
@@ -141,6 +145,7 @@
 	  plugins.colorscheme = ''
 	    return {
 	      "catppuccin/nvim",
+        name = "catppuccin",
 	      opts = { flavour = "mocha" },
 	    }
 	  '';
@@ -149,14 +154,31 @@
 	      "saghen/blink.cmp",
 	      opts = {
 	        keymap = { preset = "super-tab" },
-		completion = {
-		  ghost_text = { enabled = false },
-		},
+		      completion = {
+		        ghost_text = { enabled = false },
+		      },
 	      },
 	    }
 	  '';
-
+    plugins.dashboard = ''
+      return {
+        "folke/snacks.nvim",
+        opts = function (_, opts)
+          opts.dashboard.preset.header = [[
+██████╗ ███████╗████████╗███████╗██╗   ██╗  ██╗   ██╗██╗███╗   ███╗
+██╔══██╗██╔════╝╚══██╔══╝██╔════╝██║   ██║  ██║   ██║██║████╗ ████║
+██████╔╝█████╗     ██║   ███████╗██║   ██║  ██║   ██║██║██╔████╔██║
+██╔══██╗██╔══╝     ██║   ╚════██║██║   ██║  ╚██╗ ██╔╝██║██║╚██╔╝██║
+██║  ██║███████╗   ██║   ███████║╚██████╔╝   ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝ ╚═════╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
+          ]]
+          opts.dashboard.preset.keys = vim.tbl_filter(function(key)
+            return not vim.tbl_contains({ "Config", "Lazy", "Lazy Extras", "Projects" }, key.desc)
+          end, opts.dashboard.preset.keys)
+        end,
+      }
+    '';
 	  extras.lang.nix.enable = true;
-	  extraPackages = with pkgs; [ nixd alejandra ];
+	  extraPackages = with pkgs; [ nixd alejandra statix deadnix ];
 	};
 }

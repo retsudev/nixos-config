@@ -10,23 +10,27 @@
 	    inputs.nixpkgs.follows = "nixpkgs";
 	  };
 	};
-
-
 	outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
-	{
-	  nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+	  
+	  let
 	    system = "x86_64-linux";
+	    pkgs = nixpkgs.legacyPackages.${system};
+	  in
+
+        {
+	  nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+	    inherit system;
 	    modules = [
 	      ./configuration.nix
 	      ./hardware-configuration.nix
-	      home-manager.nixosModules.home-manager
-	      {
-	        home-manager.useGlobalPkgs = true;
-		home-manager.useUserPackages = true;
-		home-manager.users.retsudev = import ./home.nix;
-	      }
 	    ];
 	  };
+
+	  homeConfigurations.retsudev = home-manager.lib.homeManagerConfiguration {
+	    inherit pkgs;
+	    modules = [ ./home.nix ];
+	  };
+
 	};
 }
 

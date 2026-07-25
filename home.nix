@@ -8,9 +8,11 @@
 
 	programs.git = {
 	  enable = true;
-	  userName = "retsudev";
-	  userEmail = "gamershpw@gmail.com";
-	  extraConfig = {
+	  settings = { 
+	    user = {
+	      name = "retsudev";
+	      email = "gamershpw@gmail.com";
+	    };
 	    init.defaultBranch = "main";
 	    credential.helper = "store";
 	  };

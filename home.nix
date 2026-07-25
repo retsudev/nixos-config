@@ -1,9 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 	home.username = "retsudev";
 	home.homeDirectory = "/home/retsudev";
 	home.stateVersion = "26.05";
 
+	imports = [ inputs.lazyvim.homeManagerModules.default ];
+	
 	programs.home-manager.enable = true;
 
 	catppuccin = {
@@ -129,5 +131,19 @@
 	    init.defaultBranch = "main";
 	    credential.helper = "store";
 	  };
+	};
+	
+	programs.lazyvim = {
+	  enable = true;
+
+	  plugins.colorscheme = ''
+	    return {
+	      "catppuccin/nvim",
+	      opts = { flavour = "mocha" },
+	    }
+	  '';
+
+	  extras.lang.nix.enable = true;
+	  extraPackages = with pkgs; [ nixd alejandra ];
 	};
 }

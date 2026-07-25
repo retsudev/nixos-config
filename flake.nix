@@ -9,8 +9,9 @@
 	    url = "github:nix-community/home-manager/release-26.05";
 	    inputs.nixpkgs.follows = "nixpkgs";
 	  };
+	  catppuccin.url = "github:catppuccin/nix";
 	};
-	outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
+	outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, ... }:
 	  
 	  let
 	    system = "x86_64-linux";
@@ -28,7 +29,10 @@
 
 	  homeConfigurations.retsudev = home-manager.lib.homeManagerConfiguration {
 	    inherit pkgs;
-	    modules = [ ./home.nix ];
+	    modules = [
+	      ./home.nix
+	      catppuccin.homeModules.catppuccin
+	    ];
 	  };
 
 	};

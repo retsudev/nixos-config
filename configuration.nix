@@ -66,6 +66,10 @@
     fuzzel
     obsidian
     starship
+    lazygit
+    waybar
+    grim
+    wl-clipboard
   ];
   
   # hypland & fish settings & autoexec

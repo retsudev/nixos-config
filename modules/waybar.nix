@@ -1,5 +1,25 @@
 { ... }:
 
+let
+  # Собираем nerd-font иконки из hex-кода через fromJSON — так сами
+  # символы не нужно тащить сырым текстом через чат/буфер обмена,
+  # где PUA-байты теряются. Коды с https://www.nerdfonts.com/cheat-sheet
+  icon = code: builtins.fromJSON ''"\u${code}"'';
+
+  iconVolumeOff = icon "f026";
+  iconVolumeLow = icon "f027";
+  iconVolumeHigh = icon "f028";
+  iconWifi = icon "f1eb";
+  iconPlug = icon "f1e6";
+  iconWarning = icon "f071";
+  iconSun = icon "f185";
+  iconBatteryEmpty = icon "f244";
+  iconBatteryQuarter = icon "f243";
+  iconBatteryHalf = icon "f242";
+  iconBatteryThreeQuarters = icon "f241";
+  iconBatteryFull = icon "f240";
+  iconBolt = icon "f0e7";
+in
 {
   programs.waybar = {
     enable = true;
@@ -8,7 +28,7 @@
         layer = "top";
         position = "top";
         height = 30;
-        margin = "4 6 0 6";
+        margin = "4 20 0 20";
         spacing = 6;
 
         modules-left = [ "hyprland/workspaces" ];
@@ -22,15 +42,15 @@
         };
 
         "clock" = {
-          format = " {:%H:%M}";
+          format = "{:%H:%M}";
           tooltip-format = "{:%A, %d %B %Y}";
         };
 
         "pulseaudio" = {
           format = "{icon} {volume}%";
-          format-muted = " muted";
+          format-muted = "${iconVolumeOff} muted";
           format-icons = {
-            default = [ "" "" "" ];
+            default = [ iconVolumeOff iconVolumeLow iconVolumeHigh ];
           };
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
@@ -38,23 +58,22 @@
         };
 
         "network" = {
-          format-wifi = " {essid} ({signalStrength}%)";
-          format-ethernet = " {ipaddr}";
-          format-disconnected = "⚠ disconnected";
+          format-wifi = "${iconWifi} {essid} ({signalStrength}%)";
+          format-ethernet = "${iconPlug} {ipaddr}";
+          format-disconnected = "${iconWarning} disconnected";
           tooltip-format = "{ifname}: {ipaddr}/{cidr}";
         };
 
         "backlight" = {
-          format = "{icon} {percent}%";
-          format-icons = [ "" "" "" ];
+          format = "${iconSun} {percent}%";
           on-scroll-up = "brightnessctl set +5%";
           on-scroll-down = "brightnessctl set 5%-";
         };
 
         "battery" = {
           format = "{icon} {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
-          format-charging = " {capacity}%";
+          format-icons = [ iconBatteryEmpty iconBatteryQuarter iconBatteryHalf iconBatteryThreeQuarters iconBatteryFull ];
+          format-charging = "${iconBolt} {capacity}%";
           states = {
             warning = 20;
             critical = 10;

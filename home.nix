@@ -23,7 +23,7 @@
 	  enable = true;
 	  autoEnable = true;
 	  flavor = "mocha";
-	  accent = "mauve";
+	  accent = "green";
 	};
 
 	home.packages = with pkgs; [
@@ -35,6 +35,8 @@
     wl-clipboard
     tree
     brightnessctl
+    btop
+    cmatrix
 	];
 
 	fonts.fontconfig.enable = true;

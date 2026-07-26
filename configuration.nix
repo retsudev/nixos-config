@@ -6,94 +6,74 @@
     "flakes"
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # BootLoader
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
   
+  # GPU and Sound 
+  hardware.amdgpu.initrd.enable = true;
+  services = { 
+    xserver.videoDrivers = ["amdgpu"];
+    pipewire.enable = true; 
+  };
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-  };
-  
+  }; 
+
+  # Allow proprietary software
   nixpkgs.config.allowUnfree = true;
-
-  services.xserver.videoDrivers = ["amdgpu"];
-  hardware.amdgpu.initrd.enable = true;
-
+  
+  # Network 
   networking.hostName = "nixos";
-
-  # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Timezone
   time.timeZone = "Europe/Moscow";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  services.pipewire.enable = true;
-
-  services.libinput.enable = true;
-
+  
+  # User settings
   users.users.retsudev = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    initialPassword = "meme";
-    packages = with pkgs; [
-      tree
-    ];
+    extraGroups = [ "wheel" ];
+    initialPassword = "everyonelovessystemd";
+    shell = pkgs.fish;
   };
-
-  programs.firefox.enable = true;
-  programs.throne = {
-    enable = true;
-    tunMode.enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    git
-    kitty
-    fastfetch
-    fuzzel
-    obsidian
-    starship
-    lazygit
-    waybar
-    grim
-    wl-clipboard
-  ];
   
-  # hypland & fish settings & autoexec
+  # System Wide programs 
+  programs = { 
+    firefox.enable = true;
+    fish.enable = true;
+    throne = {
+      enable = true;
+      tunMode.enable = true;
+    };
+  };
+  
+  # hypland & fish settings & hyprland autoexec
 
   programs.hyprland = {
     enable = true;
     withUWSM = false;
     xwayland.enable = true;
   };
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  programs.fish.enable = true;
-  users.users.retsudev.shell = pkgs.fish;
 
   services.greetd =  {
     enable = true;
     settings = {
       default_session = {
         command = "start-hyprland";
-	user = "retsudev";
+      	user = "retsudev";
       };
     };
   };
-
-
+  
+  # First version 
   system.stateVersion = "26.05";
 
 }

@@ -7,25 +7,22 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 34;
-        margin = "8 12 0 12";
-        spacing = 8;
+        height = 30;
+        margin = "4 6 0 6";
+        spacing = 6;
 
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
         modules-right = [ "pulseaudio" "network" "backlight" "battery" ];
 
         "hyprland/workspaces" = {
-          format = "{icon}";
+          format = "{id}";
           on-click = "activate";
-          format-icons = {
-            active = "";
-            default = "";
-          };
+          sort-by-number = true;
         };
 
         "clock" = {
-          format = "{:%H:%M}";
+          format = " {:%H:%M}";
           tooltip-format = "{:%A, %d %B %Y}";
         };
 
@@ -41,7 +38,7 @@
         };
 
         "network" = {
-          format-wifi = " {essid}";
+          format-wifi = " {essid} ({signalStrength}%)";
           format-ethernet = " {ipaddr}";
           format-disconnected = "⚠ disconnected";
           tooltip-format = "{ifname}: {ipaddr}/{cidr}";
@@ -71,7 +68,7 @@
 
       * {
         font-family: "JetBrainsMono Nerd Font";
-        font-size: 14px;
+        font-size: 13px;
         min-height: 0;
       }
 
@@ -87,24 +84,32 @@
       #battery {
         background-color: @mantle;
         border: 1px solid @surface0;
-        border-radius: 14px;
+        border-radius: 12px;
         margin: 4px 3px;
-        padding: 0 12px;
+        padding: 4px 10px;
       }
 
       #workspaces {
-        padding: 3px 6px;
+        padding: 4px 6px;
       }
 
       #workspaces button {
         color: @subtext0;
-        padding: 0 6px;
-        border-radius: 10px;
+        padding: 0 8px;
+        margin: 0 2px;
+        border-radius: 8px;
+        min-width: 10px;
       }
 
       #workspaces button.active {
         color: @base;
         background-color: @mauve;
+        font-weight: bold;
+      }
+
+      #workspaces button:hover {
+        background-color: @surface0;
+        color: @text;
       }
 
       #clock {
@@ -118,6 +123,14 @@
 
       #pulseaudio.muted {
         color: @subtext0;
+      }
+
+      #network.disconnected {
+        color: @red;
+      }
+
+      #battery.charging {
+        color: @green;
       }
 
       #battery.warning {

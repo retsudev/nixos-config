@@ -18,7 +18,6 @@
   };
 	
 	programs.home-manager.enable = true;
-  nixpkgs.config.allowUnfree = true;
 
 	catppuccin = {
 	  enable = true;

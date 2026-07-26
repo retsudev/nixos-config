@@ -19,7 +19,12 @@
   hardware.amdgpu.initrd.enable = true;
   services = { 
     xserver.videoDrivers = ["amdgpu"];
-    pipewire.enable = true; 
+    pipewire = {
+      enable = true; 
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
   };
   hardware.graphics = {
     enable = true;

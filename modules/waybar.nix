@@ -1,11 +1,7 @@
 { ... }:
 
 let
-  # Собираем nerd-font иконки из hex-кода через fromJSON — так сами
-  # символы не нужно тащить сырым текстом через чат/буфер обмена,
-  # где PUA-байты теряются. Коды с https://www.nerdfonts.com/cheat-sheet
   icon = code: builtins.fromJSON ''"\u${code}"'';
-
   iconVolumeOff = icon "f026";
   iconVolumeLow = icon "f027";
   iconVolumeHigh = icon "f028";

@@ -16,8 +16,6 @@
 	  homeDirectory = "/home/retsudev";
 	  stateVersion = "26.05";
   };
-
-	imports = [ inputs.lazyvim.homeManagerModules.default ];
 	
 	programs.home-manager.enable = true;
 

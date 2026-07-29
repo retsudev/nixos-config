@@ -9,6 +9,8 @@ let
   iconPlug = icon "f1e6";
   iconWarning = icon "f071";
   iconSun = icon "f185";
+  iconCpu = icon "f2db";
+  iconRam = icon "f4bc";  # nf-oct-cpu вместо сломанного nf-fa-memory
   iconBatteryEmpty = icon "f244";
   iconBatteryQuarter = icon "f243";
   iconBatteryHalf = icon "f242";
@@ -29,17 +31,28 @@ in
 
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
-        modules-right = [ "pulseaudio" "network" "backlight" "battery" ];
+        modules-right = [ "memory" "cpu" "pulseaudio" "backlight" "network" "battery" ];
 
         "hyprland/workspaces" = {
           format = "{id}";
           on-click = "activate";
-          sort-by-number = true;
+          sort-by = "number";
+          persistent-workspaces."*" = [ 1 2 3 4 5 ];
         };
 
         "clock" = {
           format = "{:%H:%M}";
           tooltip-format = "{:%A, %d %B %Y}";
+        };
+
+        "cpu" = {
+          format = "${iconCpu} {usage}%";
+          interval = 5;
+        };
+
+        "memory" = {
+          format = "${iconRam} {percentage}%";
+          interval = 5;
         };
 
         "pulseaudio" = {
@@ -53,17 +66,17 @@ in
           on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
         };
 
-        "network" = {
-          format-wifi = "${iconWifi} {essid} ({signalStrength}%)";
-          format-ethernet = "${iconPlug} {ipaddr}";
-          format-disconnected = "${iconWarning} disconnected";
-          tooltip-format = "{ifname}: {ipaddr}/{cidr}";
-        };
-
         "backlight" = {
           format = "${iconSun} {percent}%";
           on-scroll-up = "brightnessctl set +5%";
           on-scroll-down = "brightnessctl set 5%-";
+        };
+
+        "network" = {
+          format-wifi = "${iconWifi} {signalStrength}%";
+          format-ethernet = "${iconPlug}";
+          format-disconnected = "${iconWarning}";
+          tooltip-format = "{ifname}: {ipaddr}/{cidr}";
         };
 
         "battery" = {
@@ -78,12 +91,12 @@ in
       };
     };
 
-    style = ''
-      @import "catppuccin.css";
+    style = '' 
+      @import "matugen.css";
 
       * {
         font-family: "JetBrainsMono Nerd Font";
-        font-size: 13px;
+        font-size: 12px;
         min-height: 0;
       }
 
@@ -93,13 +106,15 @@ in
 
       #workspaces,
       #clock,
+      #cpu,
+      #memory,
       #pulseaudio,
       #network,
       #backlight,
       #battery {
         background-color: @mantle;
         border: 1px solid @surface0;
-        border-radius: 12px;
+        border-radius: 8px;
         margin: 4px 3px;
         padding: 4px 10px;
       }
@@ -114,6 +129,10 @@ in
         margin: 0 2px;
         border-radius: 8px;
         min-width: 10px;
+      }
+
+      #workspaces button.empty {
+        color: @surface0;
       }
 
       #workspaces button.active {
@@ -132,7 +151,7 @@ in
         font-weight: bold;
       }
 
-      #pulseaudio, #network, #backlight, #battery {
+      #cpu, #memory, #pulseaudio, #backlight, #network, #battery {
         color: @text;
       }
 

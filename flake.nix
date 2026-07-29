@@ -1,6 +1,6 @@
 {
 
-	description = "My NixOS configuration";
+	description = "RetsuDevs NixOS configuration";
 
 	inputs = {
 	  nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -9,18 +9,22 @@
 	    url = "github:nix-community/home-manager/release-26.05";
 	    inputs.nixpkgs.follows = "nixpkgs";
 	  };
-	  catppuccin = {
-	    url = "github:catppuccin/nix";
-	    inputs.nixpkgs.follows = "nixpkgs";
-	  };
 	  lazyvim = {
 	    url = "github:pfassina/lazyvim-nix";
 	    inputs.nixpkgs.follows = "nixpkgs";
-	  };		
+	  };
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    skwd-wall = {
+      url = "github:liixini/skwd-wall";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 	};
 
 
-	outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, lazyvim, ... }:
+	outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, lazyvim, zen-browser, skwd-wall, ... }:
 	  
 	  let
 	    system = "x86_64-linux";
@@ -36,15 +40,18 @@
 	    modules = [
 	      ./configuration.nix
 	      ./hardware-configuration.nix
+        skwd-wall.nixosModules.default
 	    ];
 	  };
 
 	  homeConfigurations.retsudev = home-manager.lib.homeManagerConfiguration {
 	    inherit pkgs;
-	    extraSpecialArgs = { inherit inputs; };
+	    extraSpecialArgs = {
+          inherit inputs;
+          zen-browser = zen-browser.packages.${system}.default;
+      };
 	    modules = [
-	      ./home.nix
-	      catppuccin.homeModules.catppuccin
+	      ./home.nix 
 	    ];
 	  };
 

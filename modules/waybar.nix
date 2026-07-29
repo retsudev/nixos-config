@@ -157,6 +157,4 @@ in
       }
     '';
   };
-
-  catppuccin.waybar.mode = "createLink";
 }

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, zen-browser, ... }:
 {
   imports = [
     inputs.lazyvim.homeManagerModules.default
@@ -9,7 +9,7 @@
     ./modules/lazyvim.nix
     ./modules/starship.nix
     ./modules/waybar.nix
-  ];
+  ]; 
 
 	home = {
     username = "retsudev";
@@ -18,13 +18,6 @@
   };
 	
 	programs.home-manager.enable = true;
-
-	catppuccin = {
-	  enable = true;
-	  autoEnable = true;
-	  flavor = "mocha";
-	  accent = "green";
-	};
 
 	home.packages = with pkgs; [
 	  nerd-fonts.jetbrains-mono
@@ -37,6 +30,7 @@
     brightnessctl
     btop
     cmatrix
+    zen-browser
 	];
 
 	fonts.fontconfig.enable = true;

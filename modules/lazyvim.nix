@@ -3,13 +3,20 @@
 	programs.lazyvim = {
 	  enable = true;
     plugins = {
-	    colorscheme = ''
-	      return {
-	        "catppuccin/nvim",
-          name = "catppuccin",
-	        opts = { flavour = "mocha" },
-	      }
-	    '';
+      matugen = ''
+      return {
+        "ssnibles/matugen.nvim",
+        opts = {
+          file = vim.fn.expand("~/.cache/matugen/colors.jsonc"),
+          plugins = {
+            base = true,
+            treesitter = true,
+            cmp = true,
+            lualine = true,
+          },
+        },
+      }
+      '';
 	    blink = ''
         return {
           "saghen/blink.cmp",

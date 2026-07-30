@@ -9,6 +9,7 @@
     ./modules/lazyvim.nix
     ./modules/starship.nix
     ./modules/waybar.nix
+    ./modules/fuzzel.nix
   ]; 
 
 	home = {
@@ -21,8 +22,7 @@
 
 	home.packages = with pkgs; [
 	  nerd-fonts.jetbrains-mono
-    fastfetch
-    fuzzel
+    fastfetch 
     obsidian
     grim
     wl-clipboard

@@ -1,7 +1,7 @@
 -- Dynamic border color matugen
 
 local colorsPath = os.getenv("HOME") .. "/.config/hypr/matugen-colors.lua"
-local ok, accentColor = pcall(dotfile,colorsPath)
+local ok, accentColor = pcall(dofile,colorsPath)
 if not ok then
   accentColor = "rgba(888888ff)" -- backup color
 end

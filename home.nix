@@ -10,6 +10,8 @@
     ./modules/starship.nix
     ./modules/waybar.nix
     ./modules/fuzzel.nix
+    ./modules/cursor.nix
+    ./hyprland/hyprland.nix
   ]; 
 
 	home = {
@@ -19,6 +21,8 @@
   };
 	
 	programs.home-manager.enable = true;
+ 
+  home.enableNixpkgsReleaseCheck = false;
 
 	home.packages = with pkgs; [
 	  nerd-fonts.jetbrains-mono
@@ -29,6 +33,7 @@
     tree
     brightnessctl
     btop
+    playerctl
     cmatrix
     zen-browser
 	];

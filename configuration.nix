@@ -54,7 +54,6 @@
   
   # System Wide programs 
   programs = { 
-    firefox.enable = true;
     fish.enable = true;
     throne = {
       enable = true;

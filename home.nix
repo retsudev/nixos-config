@@ -3,6 +3,7 @@
   imports = [
     inputs.lazyvim.homeManagerModules.default
     ./modules/fish.nix
+    ./modules/obs.nix
     ./modules/git.nix
     ./modules/kitty.nix
     ./modules/lazygit.nix

@@ -39,6 +39,7 @@
     zen-browser
     cava
     tty-clock
+    mpv
 	];
 
 	fonts.fontconfig.enable = true;

@@ -7,11 +7,14 @@ hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("skwd wall toggle"))
 
 
 -- Functional Hotkeys
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exit())
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("grim - | wl-copy"))
-
+hl.bind(mainMod .. " + V", function()
+  hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+  hl.dispatch(hl.dsp.window.resize({ x = 960, y = 600, relative = false }))
+  hl.dispatch(hl.dsp.window.center())
+end)
 
 -- Navigation
 hl.bind(mainMod .. " + left",  hl.dsp.focus({direction = "left"}))

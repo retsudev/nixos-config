@@ -36,6 +36,8 @@
     playerctl
     cmatrix
     zen-browser
+    cava
+    tty-clock
 	];
 
 	fonts.fontconfig.enable = true;

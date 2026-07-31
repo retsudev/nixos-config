@@ -1,22 +1,20 @@
 hl.config ({
   general = {
-    layout      = "scrolling",
-    gaps_in     = 8,
-    gaps_out    = 12,
-    border_size = 2,
+    layout                  = "dwindle",
+    gaps_in                 = 8,
+    gaps_out                = 12,
+    border_size             = 2,
+    resize_on_border        = true,
+    extend_border_grab_area = 8,
+    hover_icon_on_border    = true,
   },
 })
 
--- Scrolling layout settings
+-- Dwindle layout settings
 hl.config ({
-  scrolling = {
-    fullscreen_on_one_column = false,
-    column_width             = 0.5,
-    focus_fit_method         = 1,
-    follow_focus             = true,
-    follow_min_visible       = 0.4,
-    wrap_focus               = true,
-    wrap_swapcol             = true,
-    direction                = "right",
+  dwindle = {
+    preserve_split = true,
+    smart_split    = false,
+    force_split    = 0,
   },
 })

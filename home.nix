@@ -12,6 +12,7 @@
     ./modules/waybar.nix
     ./modules/fuzzel.nix
     ./modules/cursor.nix
+    ./modules/yazi.nix
     ./hyprland/hyprland.nix
   ]; 
 
@@ -21,10 +22,16 @@
 	  stateVersion = "26.05";
   };
 	
-	programs.home-manager.enable = true;
- 
+  programs.home-manager.enable = true;
   home.enableNixpkgsReleaseCheck = false;
 
+  # Global Editor
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
+
+  # Home Packages
 	home.packages = with pkgs; [
 	  nerd-fonts.jetbrains-mono
     fastfetch 
@@ -41,7 +48,6 @@
     tty-clock
     mpv
 	];
-
 	fonts.fontconfig.enable = true;
 
 }

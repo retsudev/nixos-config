@@ -40,6 +40,14 @@
   # Network 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
 
   # Timezone
   time.timeZone = "Europe/Moscow";

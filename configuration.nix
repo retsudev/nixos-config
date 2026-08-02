@@ -69,6 +69,12 @@
     };
   };
   
+  # Steam settings
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
+
   # hypland & fish settings & hyprland autoexec
 
   programs.hyprland = {

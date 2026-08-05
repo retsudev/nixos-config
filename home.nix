@@ -47,6 +47,7 @@
     cava
     tty-clock
     mpv
+    qbittorrent
 	];
 	fonts.fontconfig.enable = true;
 

@@ -3,6 +3,19 @@
 	programs.lazyvim = {
 	  enable = true;
     plugins = {
+      qmlls = ''
+      return {
+        "neovim/nvim-lspconfig",
+        opts = {
+          servers = {
+            qmlls = {
+              cmd = { "qmlls" },
+              filetypes = { "qml", "qmljs" },
+            },
+          },
+        },
+      }
+      '';
       matugen = ''
       return {
         "ssnibles/matugen.nvim",
@@ -47,7 +60,14 @@
         }
       '';
     };
-	  extras.lang.nix.enable = true;
+	  extras.lang = {
+      nix.enable = true;
+      cmake.enable = true;
+      clangd = {
+        enable = true;
+        installDependencies = true;
+      };
+    };
 	  extraPackages = with pkgs; [ nixd alejandra statix deadnix ];
   };
 }

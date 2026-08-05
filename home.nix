@@ -14,7 +14,8 @@
     ./modules/cursor.nix
     ./modules/yazi.nix
     ./hyprland/hyprland.nix
-  ]; 
+    ./tools/qs-devkit.nix
+  ];
 
 	home = {
     username = "retsudev";

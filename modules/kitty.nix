@@ -5,7 +5,7 @@
     enable = true;
     font = {
       name = "JetBrainsMono Nerd Font";
-      size = 12;
+      size = 14;
     };
     extraConfig = ''
       include skwd-theme.conf

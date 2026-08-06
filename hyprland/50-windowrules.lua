@@ -1,0 +1,1 @@
+-- This is 50-windowrules.lua - file for custom windowrules

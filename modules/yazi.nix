@@ -13,9 +13,9 @@
     keymap = {
       mgr.prepend_keymap = [
         {
-        on = "<C-y>";
-        run = "plugin wl-clipboard";
-        desc = "Copy selected files to system clipboard";
+          on = "<C-y>";
+          run = "plugin wl-clipboard";
+          desc = "Copy selected files to system clipboard";
         }
       ];
     };

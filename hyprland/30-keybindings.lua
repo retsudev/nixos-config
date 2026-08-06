@@ -1,3 +1,6 @@
+-- This is 30-keybindigns.lua - file for setting up custom keybinds
+
+
 -- Program Shortcuts
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())

@@ -1,7 +1,16 @@
-{ pkgs, inputs, zen-browser, ... }:
+{
+  pkgs,
+  inputs,
+  zen-browser,
+  ...
+}:
 {
   imports = [
     inputs.lazyvim.homeManagerModules.default
+    ./pkgs/apps.nix
+    ./pkgs/cli-tools.nix
+    ./tools/qs-devkit.nix
+    ./hyprland/hyprland.nix
     ./modules/fish.nix
     ./modules/obs.nix
     ./modules/git.nix
@@ -13,16 +22,14 @@
     ./modules/fuzzel.nix
     ./modules/cursor.nix
     ./modules/yazi.nix
-    ./hyprland/hyprland.nix
-    ./tools/qs-devkit.nix
   ];
 
-	home = {
+  home = {
     username = "retsudev";
-	  homeDirectory = "/home/retsudev";
-	  stateVersion = "26.05";
+    homeDirectory = "/home/retsudev";
+    stateVersion = "26.05";
   };
-	
+
   programs.home-manager.enable = true;
   home.enableNixpkgsReleaseCheck = false;
 
@@ -32,24 +39,10 @@
     VISUAL = "nvim";
   };
 
-  # Home Packages
-	home.packages = with pkgs; [
-	  nerd-fonts.jetbrains-mono
-    fastfetch 
-    obsidian
-    grim
-    wl-clipboard
-    tree
-    brightnessctl
-    btop
-    playerctl
-    cmatrix
-    zen-browser
-    cava
-    tty-clock
-    mpv
-    qbittorrent
-	];
-	fonts.fontconfig.enable = true;
+  # Fonts
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+  fonts.fontconfig.enable = true;
 
 }

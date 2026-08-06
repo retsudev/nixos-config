@@ -10,7 +10,7 @@ let
   iconWarning = icon "f071";
   iconSun = icon "f185";
   iconCpu = icon "f2db";
-  iconRam = icon "f4bc";  # nf-oct-cpu вместо сломанного nf-fa-memory
+  iconRam = icon "f4bc"; # nf-oct-cpu вместо сломанного nf-fa-memory
   iconBatteryEmpty = icon "f244";
   iconBatteryQuarter = icon "f243";
   iconBatteryHalf = icon "f242";
@@ -31,13 +31,26 @@ in
 
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
-        modules-right = [ "memory" "cpu" "pulseaudio" "backlight" "network" "battery" ];
+        modules-right = [
+          "memory"
+          "cpu"
+          "pulseaudio"
+          "backlight"
+          "network"
+          "battery"
+        ];
 
         "hyprland/workspaces" = {
           format = "{id}";
           on-click = "activate";
           sort-by = "number";
-          persistent-workspaces."*" = [ 1 2 3 4 5 ];
+          persistent-workspaces."*" = [
+            1
+            2
+            3
+            4
+            5
+          ];
         };
 
         "clock" = {
@@ -59,7 +72,11 @@ in
           format = "{icon} {volume}%";
           format-muted = "${iconVolumeOff} muted";
           format-icons = {
-            default = [ iconVolumeOff iconVolumeLow iconVolumeHigh ];
+            default = [
+              iconVolumeOff
+              iconVolumeLow
+              iconVolumeHigh
+            ];
           };
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
@@ -81,7 +98,13 @@ in
 
         "battery" = {
           format = "{icon} {capacity}%";
-          format-icons = [ iconBatteryEmpty iconBatteryQuarter iconBatteryHalf iconBatteryThreeQuarters iconBatteryFull ];
+          format-icons = [
+            iconBatteryEmpty
+            iconBatteryQuarter
+            iconBatteryHalf
+            iconBatteryThreeQuarters
+            iconBatteryFull
+          ];
           format-charging = "${iconBolt} {capacity}%";
           states = {
             warning = 20;
@@ -91,7 +114,7 @@ in
       };
     };
 
-    style = '' 
+    style = ''
       @import "matugen.css";
 
       * {

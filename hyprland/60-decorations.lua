@@ -1,3 +1,6 @@
+-- This is 60-decorations.lua - file for fancy decorative stuff
+
+
 -- Dynamic border color matugen
 
 local colorsPath = os.getenv("HOME") .. "/.config/hypr/matugen-colors.lua"

@@ -1,3 +1,6 @@
+-- This is 40-input.lua - file for keyboard layouts & etc
+
+
 -- Russian layout enabled
 hl.config({
   input = {

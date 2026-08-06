@@ -1,3 +1,6 @@
+-- This is 00-bootstrap.lua - file for the environment variables, at-start-ups and lua locals
+
+
 -- locals
 mainMod  = "SUPER"
 terminal = "kitty"

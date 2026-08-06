@@ -1,36 +1,36 @@
 { pkgs, ... }:
 {
-	programs.lazyvim = {
-	  enable = true;
+  programs.lazyvim = {
+    enable = true;
     plugins = {
       qmlls = ''
-      return {
-        "neovim/nvim-lspconfig",
-        opts = {
-          servers = {
-            qmlls = {
-              cmd = { "qmlls" },
-              filetypes = { "qml", "qmljs" },
+        return {
+          "neovim/nvim-lspconfig",
+          opts = {
+            servers = {
+              qmlls = {
+                cmd = { "qmlls" },
+                filetypes = { "qml", "qmljs" },
+              },
             },
           },
-        },
-      }
+        }
       '';
       matugen = ''
-      return {
-        "ssnibles/matugen.nvim",
-        opts = {
-          file = vim.fn.expand("~/.cache/matugen/colors.jsonc"),
-          plugins = {
-            base = true,
-            treesitter = true,
-            cmp = true,
-            lualine = true,
+        return {
+          "ssnibles/matugen.nvim",
+          opts = {
+            file = vim.fn.expand("~/.cache/matugen/colors.jsonc"),
+            plugins = {
+              base = true,
+              treesitter = true,
+              cmp = true,
+              lualine = true,
+            },
           },
-        },
-      }
+        }
       '';
-	    blink = ''
+      blink = ''
         return {
           "saghen/blink.cmp",
           opts = {
@@ -60,7 +60,7 @@
         }
       '';
     };
-	  extras.lang = {
+    extras.lang = {
       nix.enable = true;
       cmake.enable = true;
       clangd = {
@@ -68,6 +68,11 @@
         installDependencies = true;
       };
     };
-	  extraPackages = with pkgs; [ nixd alejandra statix deadnix ];
+    extraPackages = with pkgs; [
+      nixd
+      alejandra
+      statix
+      deadnix
+    ];
   };
 }

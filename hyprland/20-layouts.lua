@@ -1,3 +1,6 @@
+-- This is 20-layouts.lua - file for configuring layout in hyprland
+
+
 hl.config ({
   general = {
     layout                  = "dwindle",

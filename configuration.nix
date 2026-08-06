@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   nix.settings.experimental-features = [
@@ -14,13 +19,13 @@
     };
     kernelPackages = pkgs.linuxPackages_latest;
   };
-  
-  # GPU and Sound 
+
+  # GPU and Sound
   hardware.amdgpu.initrd.enable = true;
-  services = { 
-    xserver.videoDrivers = ["amdgpu"];
+  services = {
+    xserver.videoDrivers = [ "amdgpu" ];
     pipewire = {
-      enable = true; 
+      enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
@@ -29,18 +34,18 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-  }; 
+  };
 
   # Allow proprietary software
   nixpkgs.config.allowUnfree = true;
-  
+
   # Wallpaper Stack
   programs.skwd-wall.enable = true;
-  
-  # Network 
+
+  # Network
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  
+
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -48,27 +53,25 @@
   };
   services.blueman.enable = true;
 
-
   # Timezone
   time.timeZone = "Europe/Moscow";
-  
+
   # User settings
   users.users.retsudev = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    initialPassword = "everyonelovessystemd";
     shell = pkgs.fish;
   };
-  
-  # System Wide programs 
-  programs = { 
+
+  # System Wide programs
+  programs = {
     fish.enable = true;
     throne = {
       enable = true;
       tunMode.enable = true;
     };
   };
-  
+
   # Steam settings
   programs.steam = {
     enable = true;
@@ -84,18 +87,17 @@
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  services.greetd =  {
+  services.greetd = {
     enable = true;
     settings = {
       default_session = {
         command = "start-hyprland";
-      	user = "retsudev";
+        user = "retsudev";
       };
     };
   };
-  
-  # First version 
+
+  # First version
   system.stateVersion = "26.05";
 
 }
-

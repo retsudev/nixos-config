@@ -39,8 +39,6 @@
   # Allow proprietary software
   nixpkgs.config.allowUnfree = true;
 
-  # Wallpaper Stack
-  programs.skwd-wall.enable = true;
 
   # Network
   networking.hostName = "nixos";

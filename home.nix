@@ -18,10 +18,10 @@
     ./modules/lazygit.nix
     ./modules/lazyvim.nix
     ./modules/starship.nix
-    ./modules/waybar.nix
     ./modules/fuzzel.nix
     ./modules/cursor.nix
     ./modules/yazi.nix
+    ./modules/wallpaper.nix
   ];
 
   home = {
@@ -44,5 +44,10 @@
     nerd-fonts.jetbrains-mono
   ];
   fonts.fontconfig.enable = true;
-
+  # Catppuccin theme enable
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
 }

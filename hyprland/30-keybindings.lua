@@ -6,7 +6,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("zen"))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("pkill fuzzel || fuzzel"))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("skwd wall toggle"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("waypaper"))
 
 
 -- Functional Hotkeys

@@ -15,4 +15,7 @@
       "60-decorations" = ./60-decorations.lua;
     };
   };
+  home.file.".config/hypr/matugen-colors.lua".text = ''
+    return "rgba(cba6f7ff)" -- Catppuccin Mocha · Mauve
+  '';
 }

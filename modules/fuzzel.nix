@@ -13,7 +13,6 @@
         "horizontal-pad" = 20;
         "vertical-pad" = 12;
         "inner-pad" = 8;
-        include = "~/.config/fuzzel/skwd-theme.ini";
       };
       border = {
         width = 2;

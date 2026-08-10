@@ -16,17 +16,26 @@
           },
         }
       '';
-      matugen = ''
+      catppuccin = ''
         return {
-          "ssnibles/matugen.nvim",
+          "catppuccin/nvim",
+          name = "catppuccin",
+          priority = 1000,
           opts = {
-            file = vim.fn.expand("~/.cache/matugen/colors.jsonc"),
-            plugins = {
-              base = true,
+            flavour = "mocha",
+            integrations = {
               treesitter = true,
               cmp = true,
               lualine = true,
             },
+          },
+        }
+      '';
+      colorscheme = ''
+        return {
+          "LazyVim/LazyVim",
+          opts = {
+            colorscheme = "catppuccin",
           },
         }
       '';

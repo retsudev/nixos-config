@@ -17,9 +17,9 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    skwd-wall = {
-      url = "github:liixini/skwd-wall";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    catppuccin = {
+      url = "github:catppuccin/nix/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -31,7 +31,7 @@
       home-manager,
       lazyvim,
       zen-browser,
-      skwd-wall,
+      catppuccin,
       ...
     }:
 
@@ -53,7 +53,6 @@
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
-          skwd-wall.nixosModules.default
         ];
       };
 
@@ -66,6 +65,7 @@
         };
         modules = [
           ./home.nix
+          catppuccin.homeModules.catppuccin
         ];
       };
 

@@ -12,6 +12,7 @@
     ./tools/qs-devkit.nix
     ./hyprland/hyprland.nix
     ./modules/fish.nix
+    ./modules/obsidian.nix
     ./modules/obs.nix
     ./modules/git.nix
     ./modules/kitty.nix
@@ -28,6 +29,13 @@
     username = "retsudev";
     homeDirectory = "/home/retsudev";
     stateVersion = "26.05";
+  };
+
+  # auto-delete generations older than 12h
+  services.home-manager.autoExpire = {
+    enable = true;
+    frequency = "*-*-* 0/3:00:00";
+    timestamp = "-12 hours";
   };
 
   programs.home-manager.enable = true;

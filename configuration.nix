@@ -6,10 +6,14 @@
 }:
 
 {
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    keep-outputs = true;
+    keep-derivations = true;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # BootLoader
   boot = {
@@ -18,6 +22,13 @@
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
+  };
+
+  # auto-delete generations
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 3d";
   };
 
   # GPU and Sound

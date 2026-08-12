@@ -9,7 +9,7 @@ menu     = "fuzzel"
 -- at-start-ups
 hl.on("hyprland.start", function()
   hl.exec_cmd("swww-daemon")
-  hl.exec_cmd("sh -c 'sleep 1 && waypaper --restore'")
+  hl.exec_cmd("sh -c 'waypaper --restore'")
 end)
 
 -- Environment cursor

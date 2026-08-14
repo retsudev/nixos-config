@@ -11,6 +11,9 @@
               qmlls = {
                 cmd = { "qmlls" },
                 filetypes = { "qml", "qmljs" },
+                on_attach = function(client)
+                  client.server_capabilities.semanticTokensProvider = nil
+                end,
               },
             },
           },

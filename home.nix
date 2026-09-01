@@ -52,10 +52,4 @@
     nerd-fonts.jetbrains-mono
   ];
   fonts.fontconfig.enable = true;
-  # Catppuccin theme enable
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "mauve";
-  };
 }

@@ -19,29 +19,6 @@
           },
         }
       '';
-      catppuccin = ''
-        return {
-          "catppuccin/nvim",
-          name = "catppuccin",
-          priority = 1000,
-          opts = {
-            flavour = "mocha",
-            integrations = {
-              treesitter = true,
-              cmp = true,
-              lualine = true,
-            },
-          },
-        }
-      '';
-      colorscheme = ''
-        return {
-          "LazyVim/LazyVim",
-          opts = {
-            colorscheme = "catppuccin",
-          },
-        }
-      '';
       blink = ''
         return {
           "saghen/blink.cmp",

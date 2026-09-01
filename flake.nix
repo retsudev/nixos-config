@@ -3,8 +3,7 @@
   description = "RetsuDevs NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,10 +14,6 @@
     };
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    catppuccin = {
-      url = "github:catppuccin/nix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -27,11 +22,9 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-unstable,
       home-manager,
       lazyvim,
       zen-browser,
-      catppuccin,
       ...
     }:
 
@@ -65,7 +58,6 @@
         };
         modules = [
           ./home.nix
-          catppuccin.homeModules.catppuccin
         ];
       };
 

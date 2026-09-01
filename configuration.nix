@@ -78,6 +78,9 @@
     throne = {
       enable = true;
       tunMode.enable = true;
+      package = pkgs.throne.overrideAttrs (oldAttrs: {
+        version = "1.2.1";
+      });
     };
   };
 

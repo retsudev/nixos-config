@@ -9,9 +9,8 @@
     inputs.lazyvim.homeManagerModules.default
     ./pkgs/apps.nix
     ./pkgs/cli-tools.nix
-    ./tools/qs-devkit.nix
-    ./hyprland/hyprland-serpantinum.nix
-    ./serpantinum/serpantinum.nix
+    ./desktop/hyprland/hyprland.nix
+    ./desktop/serpantinum.nix
     ./modules/fish.nix
     ./modules/obsidian.nix
     ./modules/obs.nix
@@ -20,10 +19,7 @@
     ./modules/lazygit.nix
     ./modules/lazyvim.nix
     ./modules/starship.nix
-    ./modules/fuzzel.nix
-    ./modules/cursor.nix
     ./modules/yazi.nix
-    # ./modules/wallpaper.nix
   ];
 
   home = {
@@ -50,6 +46,7 @@
   # Fonts
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    pulseaudio
   ];
   fonts.fontconfig.enable = true;
 }

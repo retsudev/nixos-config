@@ -4,5 +4,7 @@
     mpv
     qbittorrent
     zen-browser
+    staruml
+    onlyoffice-desktopeditors
   ];
 }

@@ -56,6 +56,8 @@ in
   # GPU and Sound
   services = {
     xserver.videoDrivers = [ "amdgpu" ];
+    blueman.enable = true;
+    upower.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -83,7 +85,6 @@ in
     enable = true;
     powerOnBoot = true;
   };
-  services.blueman.enable = true;
 
   # Timezone
   time.timeZone = "Europe/Moscow";
@@ -91,7 +92,12 @@ in
   # User settings
   users.users.retsudev = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "input"
+    ];
     shell = pkgs.fish;
   };
 

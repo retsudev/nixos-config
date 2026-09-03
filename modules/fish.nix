@@ -10,6 +10,7 @@
       # Basic aliases
       ls = "ls --color=auto";
       ff = "clear && fastfetch";
+      conf = "cd nixos-config/";
       # NixOS flake.nix aliases
       nix-switch = "sudo nixos-rebuild switch --flake ~/nixos-config#nixos";
       nix-build = "sudo nixos-rebuild build --flake ~/nixos-config#nixos";
@@ -20,15 +21,6 @@
       hm-build = "home-manager build --flake ~/nixos-config#retsudev";
       hm-gens = "home-manager generations";
       hm-deletegens = "home-manager remove-generations";
-      # WG vpn commands
-      vpn-off = "sudo systemctl stop wg-quick-romania wg-quick-germany wg-quick-france wg-quick-netherlands";
-
-      vpn-romania     = "vpn-off; and sudo systemctl start wg-quick-romania";
-      vpn-germany     = "vpn-off; and sudo systemctl start wg-quick-germany";
-      vpn-france      = "vpn-off; and sudo systemctl start wg-quick-france";
-      vpn-netherlands = "vpn-off; and sudo systemctl start wg-quick-netherlands";
-
-      vpn-status = "sudo wg show";
     };
   };
 }

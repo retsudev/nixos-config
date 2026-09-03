@@ -1,15 +1,15 @@
 hl.config({
   general = {
     border_size = 0,
-    gaps_in = 4,
-    gaps_out = 6,
+    gaps_in = 6,
+    gaps_out = 10,
     float_gaps = 6,
     resize_on_border = true,
-    extend_border_grab_area = 30,
+    extend_border_grab_area = 50,
   },
 
   decoration = {
-    rounding = 12,
+    rounding = 16,
     active_opacity = 1.0,
     inactive_opacity = 1.0,
     blur = {
@@ -23,13 +23,15 @@ hl.config({
     },
   },
 
+  
+
   input = {
-    kb_layout = "us",
+    kb_layout = "us,ru",
     kb_options = "grp:alt_shift_toggle",
     accel_profile = "flat",
     touchpad = {
       natural_scroll = true,
-      disable_while_typing = false,
+      disable_while_typing = true,
     },
   },
 
@@ -39,6 +41,19 @@ hl.config({
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
   },
+})
+
+
+hl.window_rule({
+  match = { class = "^kitty$",},
+  opacity = "0.93 override",
+})
+hl.window_rule({
+  name = "obsidian pop-up float",
+  match = { class = "^(md\\.Obsidian)$",title = ".+ - .+ - Obsidian .+"},
+  float = true,
+  no_shadow = true,
+  border_size = 0,
 })
 
 hl.curve("myBezier", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.05} } })

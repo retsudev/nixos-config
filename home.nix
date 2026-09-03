@@ -20,6 +20,7 @@
     ./modules/lazyvim.nix
     ./modules/starship.nix
     ./modules/yazi.nix
+    ./modules/cursor.nix
   ];
 
   home = {

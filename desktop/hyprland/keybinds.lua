@@ -27,7 +27,7 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("serpantinum brightness lower")
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("serpantinum brightness raise"), { locked = true })
 
 hl.bind("SUPER + S", hl.dsp.exec_cmd("serpantinum screenshot"), { locked = true })
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("serpantinum screenshot --full --edit"), { locked = true })
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("serpantinum screenshot --full"), { locked = true })
 
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd("serpantinum lock"), { locked = true })
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("serpantinum lock"), { repeating = true, locked = true })

@@ -4,6 +4,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-2605.url = "github:NixOS/nixpkgs/nixos-26.05";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,15 +18,21 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    serpantinum = {
+      url = "github:ilyamiro/serpantinum";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
       self,
       nixpkgs,
+      nixpkgs-2605,
       home-manager,
       lazyvim,
       zen-browser,
+      serpantinum,
       ...
     }:
 
@@ -43,9 +51,13 @@
       # NixOS system configuration
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inherit serpantinum inputs nixpkgs-2605;
+        };
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
+          serpantinum.nixosModules.default
         ];
       };
 
@@ -54,6 +66,7 @@
         inherit pkgs;
         extraSpecialArgs = {
           inherit inputs;
+          inherit serpantinum;
           zen-browser = zen-browser.packages.${system}.default;
         };
         modules = [

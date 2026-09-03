@@ -2,10 +2,32 @@
   config,
   lib,
   pkgs,
+  inputs,
+  nixpkgs-2605,
   ...
 }:
 
+let
+  pkgs-2605 = import nixpkgs-2605 {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
+in
 {
+
+  # VPN
+  disabledModules = [
+    "programs/throne.nix"
+  ];
+
+  imports = [
+    "${nixpkgs-2605}/nixos/modules/programs/throne.nix"
+  ];
+  programs.throne = {
+    enable = true;
+    tunMode.enable = true;
+    package = pkgs-2605.throne;
+  };
   nix.settings = {
     keep-outputs = true;
     keep-derivations = true;
@@ -32,7 +54,6 @@
   };
 
   # GPU and Sound
-  hardware.amdgpu.initrd.enable = true;
   services = {
     xserver.videoDrivers = [ "amdgpu" ];
     pipewire = {
@@ -42,14 +63,16 @@
       pulse.enable = true;
     };
   };
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+    amdgpu.initrd.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 
   # Allow proprietary software
   nixpkgs.config.allowUnfree = true;
-
 
   # Network
   networking.hostName = "nixos";
@@ -74,14 +97,8 @@
 
   # System Wide programs
   programs = {
+    nix-ld.enable = true;
     fish.enable = true;
-    throne = {
-      enable = true;
-      tunMode.enable = true;
-      package = pkgs.throne.overrideAttrs (oldAttrs: {
-        version = "1.2.1";
-      });
-    };
   };
 
   # Steam settings
@@ -89,6 +106,9 @@
     enable = true;
     remotePlay.openFirewall = true;
   };
+
+  # Serpantinum shell
+  programs.serpantinum.enable = true;
 
   # hypland & fish settings & hyprland autoexec
 

@@ -20,6 +20,15 @@
       hm-build = "home-manager build --flake ~/nixos-config#retsudev";
       hm-gens = "home-manager generations";
       hm-deletegens = "home-manager remove-generations";
+      # WG vpn commands
+      vpn-off = "sudo systemctl stop wg-quick-romania wg-quick-germany wg-quick-france wg-quick-netherlands";
+
+      vpn-romania     = "vpn-off; and sudo systemctl start wg-quick-romania";
+      vpn-germany     = "vpn-off; and sudo systemctl start wg-quick-germany";
+      vpn-france      = "vpn-off; and sudo systemctl start wg-quick-france";
+      vpn-netherlands = "vpn-off; and sudo systemctl start wg-quick-netherlands";
+
+      vpn-status = "sudo wg show";
     };
   };
 }

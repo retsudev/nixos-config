@@ -10,7 +10,8 @@
     ./pkgs/apps.nix
     ./pkgs/cli-tools.nix
     ./tools/qs-devkit.nix
-    ./hyprland/hyprland.nix
+    ./hyprland/hyprland-serpantinum.nix
+    ./serpantinum/serpantinum.nix
     ./modules/fish.nix
     ./modules/obsidian.nix
     ./modules/obs.nix
@@ -22,7 +23,7 @@
     ./modules/fuzzel.nix
     ./modules/cursor.nix
     ./modules/yazi.nix
-    ./modules/wallpaper.nix
+    # ./modules/wallpaper.nix
   ];
 
   home = {
@@ -46,7 +47,6 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
-
   # Fonts
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

@@ -12,5 +12,6 @@
     tty-clock
     wl-clipboard
     grim
+    fetch
   ];
 }

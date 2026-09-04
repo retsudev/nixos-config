@@ -28,6 +28,8 @@ in
     tunMode.enable = true;
     package = pkgs-2605.throne;
   };
+
+  # Nix settings
   nix.settings = {
     keep-outputs = true;
     keep-derivations = true;
@@ -86,10 +88,10 @@ in
     powerOnBoot = true;
   };
 
-  # Timezone
-  time.timeZone = "Europe/Moscow";
+  # timezone
+  time.timeZone = "europe/moscow";
 
-  # User settings
+  # user settings
   users.users.retsudev = {
     isNormalUser = true;
     extraGroups = [
@@ -97,10 +99,21 @@ in
       "networkmanager"
       "video"
       "input"
+      "vboxusers"
     ];
     shell = pkgs.fish;
   };
 
+  # virtual box
+  virtualisation = {
+    virtualbox = {
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+        enableHardening = true;
+      };
+    };
+  };
   # System Wide programs
   programs = {
     nix-ld.enable = true;

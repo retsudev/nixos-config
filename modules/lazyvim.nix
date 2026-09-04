@@ -3,6 +3,32 @@
   programs.lazyvim = {
     enable = true;
     plugins = {
+      colorscheme = ''
+        return {
+          "slugbyte/lackluster.nvim",
+          lazy = false,
+          priority = 1000,
+          init = function()
+            local lackluster = require("lackluster")
+            lackluster.setup({
+              tweak_background = {
+                normal = "none",   -- transparent editor background
+                telescope = "none",
+                menu = "none",
+              },
+            })
+            vim.cmd.colorscheme("lackluster-hack") -- or "lackluster" / "lackluster-mint"
+          end,
+        }
+      '';
+      colorscheme_select = ''
+        return {
+          "LazyVim/LazyVim",
+          opts = {
+            colorscheme = "lackluster-hack",  -- or "lackluster" / "lackluster-mint"
+          },
+        }
+      '';
       blink = ''
         return {
           "saghen/blink.cmp",

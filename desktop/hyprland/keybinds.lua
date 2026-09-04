@@ -21,7 +21,18 @@ hl.bind(mainMod .. " + Up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + Down", hl.dsp.focus({ direction = "down" }))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.kill())
+hl.bind(mainMod .. " + F", function()
+    local w = hl.get_active_window()
+    if w == nil then return end
+    if not w.floating then
+        hl.dispatch(hl.dsp.window.float({ action = "set" }))
+        hl.dispatch(hl.dsp.window.resize({ x = 800, y = 600, relative = false }))
+        hl.dispatch(hl.dsp.window.center())
+    else
+        hl.dispatch(hl.dsp.window.float({ action = "unset" }))
+    end
+end)
 
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("serpantinum brightness lower"), { locked = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("serpantinum brightness raise"), { locked = true })

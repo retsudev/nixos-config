@@ -89,7 +89,7 @@ in
   };
 
   # timezone
-  time.timeZone = "europe/moscow";
+  time.timeZone = "Europe/Moscow";
 
   # user settings
   users.users.retsudev = {

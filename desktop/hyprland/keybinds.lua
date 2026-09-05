@@ -49,7 +49,7 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("serpantinum volume lower"), { r
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("serpantinum volume raise"), { repeating = true, locked = true })
 
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("zen"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " -e y"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " -e yazi"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("serpantinum reload"))

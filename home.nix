@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   zen-browser,
+  pyroclear,
   ...
 }:
 {

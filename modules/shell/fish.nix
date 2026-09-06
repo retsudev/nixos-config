@@ -11,6 +11,8 @@
     shellAliases = {
       # Basic aliases
       ls = "ls --color=auto";
+      c = "pyroclear";
+      n = "nvim";
       ff = "clear && fastfetch";
       conf = "cd nixos-config/";
       # NixOS flake.nix aliases

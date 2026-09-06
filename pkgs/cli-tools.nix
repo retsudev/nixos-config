@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pyroclear, ... }:
 {
   home.packages = with pkgs; [
     terminal-toys
@@ -13,5 +13,6 @@
     wl-clipboard
     grim
     fetch
+    pyroclear
   ];
 }

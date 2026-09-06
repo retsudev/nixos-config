@@ -22,6 +22,10 @@
       url = "github:ilyamiro/serpantinum";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pyroclear = {
+      url = "github:shreyanth-sureshkrishnaa/pyroclear";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,6 +37,7 @@
       lazyvim,
       zen-browser,
       serpantinum,
+      pyroclear,
       ...
     }:
 
@@ -67,6 +72,7 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit serpantinum;
+          pyroclear = inputs.pyroclear.packages.${system}.default;
           zen-browser = zen-browser.packages.${system}.default;
         };
         modules = [

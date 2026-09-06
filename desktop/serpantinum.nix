@@ -21,6 +21,16 @@
         language = "en";
         weatherUnit = "metric";
         weatherInterval = 30;
+        location = {
+          latitude = 45.0355;
+          longitude = 38.9753;
+          city = "Krasnodar";
+          region = "Krasnodar Krai";
+          country_name = "Russia";
+          country_code = "RU";
+          source = "manual";
+          updated_at = 1893456000;
+        };
       };
 
       bar = {

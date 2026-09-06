@@ -11,16 +11,16 @@
     ./pkgs/cli-tools.nix
     ./desktop/hyprland/hyprland.nix
     ./desktop/serpantinum.nix
-    ./modules/fish.nix
-    ./modules/obsidian.nix
-    ./modules/obs.nix
-    ./modules/git.nix
-    ./modules/kitty.nix
-    ./modules/lazygit.nix
-    ./modules/lazyvim.nix
-    ./modules/starship.nix
-    ./modules/yazi.nix
-    ./modules/cursor.nix
+    ./modules/git/git.nix
+    ./modules/git/lazygit.nix
+    ./modules/shell/fish.nix
+    ./modules/shell/kitty.nix
+    ./modules/shell/starship.nix
+    ./modules/programs/lazyvim/default.nix
+    ./modules/programs/obsidian.nix
+    ./modules/programs/obs.nix
+    ./modules/programs/yazi.nix
+    ./modules/misc/cursor.nix
   ];
 
   home = {

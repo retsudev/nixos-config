@@ -18,5 +18,11 @@
     installDependencies = true;
   };
 
+  java = {
+    enable = true;
+    installDependencies = true;
+    installRuntimeDependencies = true;
+  };
+
   cmake.enable = true;
 }

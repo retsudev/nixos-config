@@ -21,6 +21,10 @@ with pkgs; [
   cmake
   ninja
 
+  # Java
+  jdk21
+  jdt-language-server
+
   # Rust
   rustc
   cargo

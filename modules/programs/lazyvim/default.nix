@@ -7,7 +7,7 @@
 
     extras.lang = import ./languages.nix;
 
-    extraPackages = import ./packages.nix { inherit pkgs; };
+    extraPackages = import ./lsp.nix { inherit pkgs; };
 
   };
 }

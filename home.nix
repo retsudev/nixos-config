@@ -45,10 +45,14 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
   # Fonts
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     pulseaudio
-  ];
+  ]
+  ++
+  # Supported languages
+  import ./language-pkgs.nix {inherit pkgs; };
   fonts.fontconfig.enable = true;
 }

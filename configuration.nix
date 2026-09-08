@@ -31,8 +31,9 @@ in
 
   # Nix settings
   nix.settings = {
-    keep-outputs = true;
     keep-derivations = true;
+    auto-optimise-store = true;
+    keep-outputs = false;
     experimental-features = [
       "nix-command"
       "flakes"

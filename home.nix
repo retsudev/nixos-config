@@ -53,6 +53,6 @@
   ]
   ++
   # Supported languages
-  import ./language-pkgs.nix {inherit pkgs; };
+  import ./pkgs/language-pkgs.nix {inherit pkgs; };
   fonts.fontconfig.enable = true;
 }

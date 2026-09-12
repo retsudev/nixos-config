@@ -8,8 +8,8 @@
 {
   imports = [
     inputs.lazyvim.homeManagerModules.default
-    ./pkgs/apps.nix
-    ./pkgs/cli-tools.nix
+    ./home/apps.nix
+    ./home/cli-tools.nix
     ./desktop/hyprland/hyprland.nix
     ./desktop/serpantinum.nix
     ./modules/git/git.nix
@@ -56,9 +56,7 @@
       cmake
       ninja
       clang-tools
-    ]
-    ++
-      # Supported languages
-      import ./pkgs/language-pkgs.nix { inherit pkgs; };
+    ];
+
   fonts.fontconfig.enable = true;
 }

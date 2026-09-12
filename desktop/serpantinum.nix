@@ -59,7 +59,6 @@
   };
   home.packages = with pkgs; [
     adwaita-icon-theme
-    wl-clipboard
     cliphist
   ];
 }

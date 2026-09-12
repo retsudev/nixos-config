@@ -3,6 +3,7 @@
 let
   pkgs-2605 = import nixpkgs-2605 {
     inherit (pkgs) system;
+    config.allowUnfree = true;
   };
 in
 

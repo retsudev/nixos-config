@@ -3,9 +3,6 @@
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
-
-    extraPackages = [ pkgs.wl-clipboard ];
-
     plugins = {
       wl-clipboard = pkgs.yaziPlugins.wl-clipboard;
     };

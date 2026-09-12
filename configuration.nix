@@ -12,9 +12,7 @@
   ];
   # Nix settings
   nix.settings = {
-    keep-derivations = true;
     auto-optimise-store = true;
-    keep-outputs = false;
     experimental-features = [
       "nix-command"
       "flakes"
@@ -38,7 +36,6 @@
 
   # GPU and Sound
   services = {
-    xserver.videoDrivers = [ "amdgpu" ];
     blueman.enable = true;
     upower.enable = true;
     pipewire = {
@@ -55,10 +52,6 @@
       enable32Bit = true;
     };
   };
-
-  # Allow proprietary software
-  nixpkgs.config.allowUnfree = true;
-
   # Network
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;

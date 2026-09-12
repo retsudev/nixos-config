@@ -50,6 +50,10 @@
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     pulseaudio
+    gcc
+    cmake
+    ninja
+    clang-tools
   ]
   ++
   # Supported languages

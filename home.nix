@@ -34,7 +34,7 @@
   services.home-manager.autoExpire = {
     enable = true;
     frequency = "*-*-* 0/3:00:00";
-    timestamp = "-12 hours";
+    timestamp = "-72 hours";
   };
 
   programs.home-manager.enable = true;

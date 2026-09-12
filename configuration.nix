@@ -46,14 +46,13 @@ in
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   # auto-delete generations
   nix.gc = {
     automatic = true;
     dates = "daily";
-    options = "--delete-older-than 3d";
+    options = "--delete-older-than 7d";
   };
 
   # GPU and Sound
@@ -151,5 +150,4 @@ in
 
   # First version
   system.stateVersion = "26.05";
-
 }

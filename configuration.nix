@@ -18,9 +18,10 @@
       "flakes"
     ];
   };
-
+  nixpkgs.config.allowUnfree = true;
   # BootLoader
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -73,20 +74,8 @@
       "networkmanager"
       "video"
       "input"
-      "vboxusers"
     ];
     shell = pkgs.fish;
-  };
-
-  # virtual box
-  virtualisation = {
-    virtualbox = {
-      host = {
-        enable = true;
-        enableExtensionPack = true;
-        enableHardening = true;
-      };
-    };
   };
   # System Wide programs
   programs = {

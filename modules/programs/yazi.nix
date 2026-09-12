@@ -29,19 +29,50 @@
     };
     theme = {
       mode = {
-        normal_main = { fg = "black"; bg = "white"; bold = true; };
-        normal_alt  = { fg = "white"; bg = "black"; };
-        select_main = { fg = "black"; bg = "white"; bold = true; };
-        select_alt  = { fg = "white"; bg = "black"; };
-        unset_main  = { fg = "black"; bg = "white"; bold = true; };
-        unset_alt   = { fg = "white"; bg = "black"; };
+        normal_main = {
+          fg = "black";
+          bg = "white";
+          bold = true;
+        };
+        normal_alt = {
+          fg = "white";
+          bg = "black";
+        };
+        select_main = {
+          fg = "black";
+          bg = "white";
+          bold = true;
+        };
+        select_alt = {
+          fg = "white";
+          bg = "black";
+        };
+        unset_main = {
+          fg = "black";
+          bg = "white";
+          bold = true;
+        };
+        unset_alt = {
+          fg = "white";
+          bg = "black";
+        };
       };
       status = {
-        perm_sep   = { fg = "reset"; };
-        perm_type  = { fg = "reset"; };
-        perm_read  = { fg = "reset"; };
-        perm_write = { fg = "reset"; };
-        perm_exec  = { fg = "reset"; };
+        perm_sep = {
+          fg = "reset";
+        };
+        perm_type = {
+          fg = "reset";
+        };
+        perm_read = {
+          fg = "reset";
+        };
+        perm_write = {
+          fg = "reset";
+        };
+        perm_exec = {
+          fg = "reset";
+        };
       };
     };
   };

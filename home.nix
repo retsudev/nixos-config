@@ -47,16 +47,18 @@
   };
 
   # Fonts
-  home.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    pulseaudio
-    gcc
-    cmake
-    ninja
-    clang-tools
-  ]
-  ++
-  # Supported languages
-  import ./pkgs/language-pkgs.nix {inherit pkgs; };
+  home.packages =
+    with pkgs;
+    [
+      nerd-fonts.jetbrains-mono
+      pulseaudio
+      gcc
+      cmake
+      ninja
+      clang-tools
+    ]
+    ++
+      # Supported languages
+      import ./pkgs/language-pkgs.nix { inherit pkgs; };
   fonts.fontconfig.enable = true;
 }

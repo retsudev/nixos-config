@@ -116,7 +116,6 @@ in
   };
   # System Wide programs
   programs = {
-    nix-ld.enable = true;
     fish.enable = true;
   };
 

@@ -1,9 +1,9 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.lazyvim = {
     enable = true;
 
-    configFiles  = ./lazyvim-config;
+    configFiles = ./lazyvim-config;
 
     extras.lang = import ./languages.nix;
 

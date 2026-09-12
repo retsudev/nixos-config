@@ -3,32 +3,13 @@
   lib,
   pkgs,
   inputs,
-  nixpkgs-2605,
   ...
 }:
 
-let
-  pkgs-2605 = import nixpkgs-2605 {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
-in
 {
-
-  # VPN
-  disabledModules = [
-    "programs/throne.nix"
-  ];
-
   imports = [
-    "${nixpkgs-2605}/nixos/modules/programs/throne.nix"
+    ./system/throne-prog.nix
   ];
-  programs.throne = {
-    enable = true;
-    tunMode.enable = true;
-    package = pkgs-2605.throne;
-  };
-
   # Nix settings
   nix.settings = {
     keep-derivations = true;

@@ -1,28 +1,26 @@
 {
   nix.enable = true;
 
-  python = {
-    enable = true;
-    installDependencies = true;
-    installRuntimeDependencies = true;
-  };
+  clangd.enable = true;
+
+  cmake.enable = true;
+
+  typescript.enable = true;
 
   rust = {
     enable = true;
-    installDependencies = true;
-    installRuntimeDependencies = true;
-  };
-
-  clangd = {
-    enable = true;
-    installDependencies = true;
+    installDependencies = false;
+    installRuntimeDependencies = false;
   };
 
   java = {
     enable = true;
-    installDependencies = true;
-    installRuntimeDependencies = true;
+    installDependencies = false;
+    installRuntimeDependencies = false;
   };
-
-  cmake.enable = true;
+  python = {
+    enable = true;
+    installDependencies = false;
+    installRuntimeDependencies = false;
+  };
 }

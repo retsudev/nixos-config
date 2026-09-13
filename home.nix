@@ -10,6 +10,7 @@
     inputs.lazyvim.homeManagerModules.default
     ./home/apps.nix
     ./home/cli-tools.nix
+    ./home/lang-pkgs.nix
     ./desktop/hyprland/hyprland.nix
     ./desktop/serpantinum.nix
     ./modules/git/git.nix
@@ -52,10 +53,6 @@
     [
       nerd-fonts.jetbrains-mono
       pulseaudio
-      gcc
-      cmake
-      ninja
-      clang-tools
     ];
 
   fonts.fontconfig.enable = true;

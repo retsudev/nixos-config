@@ -113,6 +113,24 @@
     };
   };
 
+  # Fonts
+  fonts = {
+    enableDefaultPackages = true;
+
+    packages = with pkgs; [
+      corefonts
+      carlito
+      caladea
+      liberation_ttf
+      dejavu_fonts
+      noto-fonts
+      noto-fonts-color-emoji
+      nerd-fonts.jetbrains-mono
+    ];
+
+    fontconfig.enable = true;
+  };
+
   # First version
   system.stateVersion = "26.05";
 }

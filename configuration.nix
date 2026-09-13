@@ -118,11 +118,6 @@
     enableDefaultPackages = true;
 
     packages = with pkgs; [
-      corefonts
-      carlito
-      caladea
-      liberation_ttf
-      dejavu_fonts
       noto-fonts
       noto-fonts-color-emoji
       nerd-fonts.jetbrains-mono

@@ -4,7 +4,7 @@
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
-    presets = [ "nerd-font-symbols" ];
+    presets = [ "plain-text-symbols" ];
     settings = {
       add_newline = false;
     };

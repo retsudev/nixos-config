@@ -40,7 +40,8 @@
         if test "$argv[1]" = "--run"
           set executables (
             ninja -C $build_dir -t targets all |
-            string match -r '^(.*): CXX_EXECUTABLE_LINKER'
+            string match -r '^[^:]+: (?:CXX|C)_EXECUTABLE_LINKER' |
+            string replace -r ': (?:CXX|C)_EXECUTABLE_LINKER.*' ""
           )
 
           if test (count $executables) -eq 0
@@ -75,8 +76,7 @@
           $build_dir/$target
         end
       '';
-
-        description = "Configure, build and optionally run a CMake project";
+      description = "Configure, build and optionally run a CMake project";
       };
     };
   };

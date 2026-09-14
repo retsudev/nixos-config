@@ -13,6 +13,7 @@
     wl-clipboard
     grim
     fetch
+    onefetch
     pyroclear
   ];
 }

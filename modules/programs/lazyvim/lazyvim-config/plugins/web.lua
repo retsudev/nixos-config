@@ -6,7 +6,12 @@ return {
         html = {},
         cssls = {},
         emmet_language_server = {
-          filetypes = { "html", "css", "javascriptreact", "typescriptreact" },
+          filetypes = {
+            "html",
+            "css",
+            "javascriptreact",
+            "typescriptreact",
+          },
         },
       },
     },

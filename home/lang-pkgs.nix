@@ -27,6 +27,7 @@ home.packages = with pkgs; [
   ant
 
   # Web-Dev-Stack
+  live-server
   nodejs
   typescript
   vtsls

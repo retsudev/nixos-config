@@ -112,6 +112,8 @@
       };
     };
   };
+  # Dont suspend or turn off the display when closing the lid
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
 
   # Fonts
   fonts = {

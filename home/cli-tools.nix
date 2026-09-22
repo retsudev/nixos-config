@@ -14,6 +14,7 @@
     grim
     fetch
     onefetch
+    hyfetch
     pyroclear
   ];
 }

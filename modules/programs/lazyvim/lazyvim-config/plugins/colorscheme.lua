@@ -1,95 +1,45 @@
 return {
   {
-    "slugbyte/lackluster.nvim",
-    lazy = false,
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
-
-    init = function()
-      local lackluster = require("lackluster")
-
-      lackluster.setup({
-        tweak_background = {
-          normal = "none",
-          telescope = "none",
-          menu = "none",
-        },
-      })
-
-      vim.cmd.colorscheme("lackluster-hack")
-
-      vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-      vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
-    end,
-  },
-
-  {
-    "akinsho/bufferline.nvim",
-
     opts = {
-      options = {
-        show_buffer_icons = false,
-
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-
-        show_tab_indicators = false,
-
-        separator_style = { "", "" },
+      flavour = "mocha",
+      transparent_background = true,
+      float = {
+        transparent = true,
+        solid = true,
       },
-
-      highlights = {
-        fill = {
-          bg = "none",
-        },
-
-        background = {
-          bg = "none",
-        },
-
-        buffer_visible = {
-          bg = "none",
-        },
-
-        tab = {
-          bg = "none",
-        },
-
-        tab_close = {
-          bg = "none",
-        },
-
-        close_button = {
-          bg = "none",
-        },
-
-        close_button_visible = {
-          bg = "none",
-        },
-
-        separator = {
-          bg = "none",
-        },
-
-        separator_visible = {
-          bg = "none",
-        },
-
-        modified = {
-          bg = "none",
-        },
-
-        modified_visible = {
-          bg = "none",
-        },
-
-        duplicate = {
-          bg = "none",
-        },
-
-        duplicate_visible = {
-          bg = "none",
-        },
+      highlight_overrides = {
+        mocha = function()
+          return {
+            Normal = { bg = "NONE" },
+            NormalNC = { bg = "NONE" },
+            NormalFloat = { bg = "NONE" },
+            FloatBorder = { bg = "NONE" },
+            SignColumn = { bg = "NONE" },
+            FoldColumn = { bg = "NONE" },
+            EndOfBuffer = { bg = "NONE" },
+            SnacksNormal = { bg = "NONE" },
+            SnacksNormalNC = { bg = "NONE" },
+            SnacksWinBar = { bg = "NONE" },
+            SnacksWinBarNC = { bg = "NONE" },
+            SnacksPickerInput = { bg = "NONE" },
+            SnacksPickerList = { bg = "NONE" },
+            SnacksPickerPreview = { bg = "NONE" },
+            SnacksPickerBox = { bg = "NONE" },
+            SnacksPickerBorder = { bg = "NONE" },
+            SnacksExplorer = { bg = "NONE" },
+            SnacksExplorerNormal = { bg = "NONE" },
+          }
+        end,
       },
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin-nvim",
     },
   },
 }

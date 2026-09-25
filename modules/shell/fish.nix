@@ -5,6 +5,7 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
+      zoxide init fish | source
       bind ctrl-backspace backward-kill-path-component
       bind alt-backspace backward-kill-path-component
     '';

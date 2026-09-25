@@ -33,6 +33,7 @@
       la = "eza -a";
       lt = "eza --tree --level=2";
       cat = "bat --paging=never";
+      copycat = "bat --paging=never | wl-copy";
 
       # Git
       gs = "git status";

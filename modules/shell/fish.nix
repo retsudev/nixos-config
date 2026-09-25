@@ -10,7 +10,6 @@
     '';
     shellAliases = {
       # Basic aliases
-      ls = "ls --color=auto";
       c = "pyroclear";
       n = "nvim";
       ff = "clear && fastfetch";
@@ -26,6 +25,25 @@
       hm-build = "home-manager build --flake ~/nixos-config#retsudev";
       hm-gens = "home-manager generations";
       hm-deletegens = "home-manager remove-generations";
+
+      # Files
+      ls = "eza";
+      ll = "eza -lah --git";
+      la = "eza -a";
+      lt = "eza --tree --level=2";
+      cat = "bat --paging=never";
+
+      # Git
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gp = "git push";
+      gl = "git lod --oneline --graph --decorate";
+      lg = "lazygit";
+
+      # Disk
+      df = "duf";
+      du = "dust";
     };
     functions = {
     cmake-build = {

@@ -47,57 +47,5 @@
       df = "duf";
       du = "dust";
     };
-    functions = {
-    cmake-build = {
-      body = ''
-        set build_dir build
-
-        cmake -S . -B $build_dir -G Ninja \
-          -DCMAKE_CXX_COMPILER=clang++
-
-        and cmake --build $build_dir
-
-        if test "$argv[1]" = "--run"
-          set executables (
-            ninja -C $build_dir -t targets all |
-            string match -r '^[^:]+: (?:CXX|C)_EXECUTABLE_LINKER' |
-            string replace -r ': (?:CXX|C)_EXECUTABLE_LINKER.*' ""
-          )
-
-          if test (count $executables) -eq 0
-            echo "No executable targets found."
-            return 1
-          end
-
-          if test (count $executables) -eq 1
-            set target $executables[1]
-          else
-            echo "Available executables:"
-            for i in (seq (count $executables))
-              echo "$i) $executables[$i]"
-            end
-
-            read -P "Select executable: " choice
-
-            if not string match -qr '^[0-9]+$' -- $choice
-              echo "Invalid selection."
-              return 1
-            end
-
-            if test $choice -lt 1 -o $choice -gt (count $executables)
-              echo "Invalid selection."
-              return 1
-            end
-
-            set target $executables[$choice]
-          end
-
-          echo "Running $target..."
-          $build_dir/$target
-        end
-      '';
-      description = "Configure, build and optionally run a CMake project";
-      };
-    };
   };
 }

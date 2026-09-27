@@ -9,7 +9,7 @@ home.packages = with pkgs; [
   deadnix
 
   # C / C++
-  clang
+  gcc
   clang-tools
   cmake
   ninja

@@ -4,6 +4,6 @@
     mpv
     qbittorrent
     zen-browser
-    staruml
+    vscode
   ];
 }

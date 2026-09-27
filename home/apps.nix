@@ -4,6 +4,5 @@
     mpv
     qbittorrent
     zen-browser
-    vscode
   ];
 }

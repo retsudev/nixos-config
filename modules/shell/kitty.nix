@@ -12,6 +12,7 @@
     };
     extraConfig = ''
       include ~/.config/kitty/colors.conf
+      remember_window_size no
     '';
   };
 }

@@ -40,7 +40,7 @@
       ga = "git add";
       gc = "git commit";
       gp = "git push";
-      gl = "git lod --oneline --graph --decorate";
+      gl = "git log --oneline --graph --decorate";
       lg = "lazygit";
 
       # Disk

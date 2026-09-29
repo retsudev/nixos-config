@@ -16,7 +16,15 @@ hl.config({
       enabled = true,
       size = 8,
       passes = 2,
+
+      brightness = 0.75,
+      contrast = 1.0,
+
+      ignore_opacity = true;
       new_optimizations = true,
+
+      noise = 0.0117,
+      vibrancy = 0.1,
     },
     shadow = {
       enabled = false,

@@ -1,7 +1,7 @@
 return {
   {
     "nvim-lua/plenary.nvim",
-    lazy = true,
+    lazy = false,
 
     config = function()
       local server_job = nil
@@ -15,7 +15,10 @@ return {
 
       local function start_server()
         if is_running() then
-          vim.notify("Live server is already running", vim.log.levels.WARN)
+          vim.notify(
+            "Live server is already running",
+            vim.log.levels.WARN
+          )
           return
         end
 
@@ -74,33 +77,16 @@ return {
         })
       end
 
-      vim.keymap.set("n", "<leader>Ws", start_server, {
-        desc = "Web: Start server",
-        silent = true,
+      vim.api.nvim_create_user_command("WebStart", start_server, {
+        desc = "Start live-server",
       })
 
-      vim.keymap.set("n", "<leader>Wx", stop_server, {
-        desc = "Web: Stop server",
-        silent = true,
+      vim.api.nvim_create_user_command("WebStop", stop_server, {
+        desc = "Stop live-server",
       })
 
-      vim.keymap.set("n", "<leader>Wo", open_browser, {
-        desc = "Web: Open in browser",
-        silent = true,
-      })
-    end,
-  },
-
-  {
-    "folke/which-key.nvim",
-    optional = true,
-
-    opts = function(_, opts)
-      opts.spec = opts.spec or {}
-
-      table.insert(opts.spec, {
-        "<leader>W",
-        group = "Web",
+      vim.api.nvim_create_user_command("WebOpen", open_browser, {
+        desc = "Open web server in browser",
       })
     end,
   },

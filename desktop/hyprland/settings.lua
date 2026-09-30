@@ -64,14 +64,105 @@ hl.window_rule({
   border_size = 0,
 })
 
-hl.curve("myBezier", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.05} } })
+hl.curve("smoothWindow", {
+    type = "bezier",
+    points = {
+        {0.16, 0.77},
+        {0.33, 1.0}
+    }
+})
 
-hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "myBezier", style = "popin 80%" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 5, bezier = "myBezier", style = "popin 80%" })
-hl.animation({ leaf = "layers", enabled = true, speed = 5, bezier = "myBezier", style = "fade" })
-hl.animation({ leaf = "layersIn", enabled = true, speed = 5, bezier = "myBezier", style = "fade" })
-hl.animation({ leaf = "layersOut", enabled = true, speed = 5, bezier = "myBezier", style = "fade" })
-hl.animation({ leaf = "fade", enabled = true, speed = 5, bezier = "myBezier" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "myBezier", style = "slide" })
-hl.animation({ leaf = "specialWorkspaceIn", enabled = true, speed = 5, bezier = "myBezier", style = "fade" })
-hl.animation({ leaf = "specialWorkspaceOut", enabled = true, speed = 5, bezier = "myBezier", style = "fade" })
+hl.curve("smoothIn", {
+    type = "bezier",
+    points = {
+        {0.12, 0.8},
+        {0.39, 1.0}
+    }
+})
+
+hl.curve("smoothOut", {
+    type = "bezier",
+    points = {
+        {0.4, 0.0},
+        {0.6, 1.0}
+    }
+})
+
+hl.animation({
+    leaf = "windows",
+    enabled = true,
+    speed = 5,
+    bezier = "smoothWindow",
+    style = "slide"
+})
+
+hl.animation({
+    leaf = "windowsIn",
+    enabled = true,
+    speed = 5,
+    bezier = "smoothIn",
+    style = "popin 70%"
+})
+
+hl.animation({
+    leaf = "windowsOut",
+    enabled = true,
+    speed = 6,
+    bezier = "smoothOut",
+    style = "popin 0%"
+})
+
+hl.animation({
+    leaf = "layers",
+    enabled = true,
+    speed = 5,
+    bezier = "smoothWindow",
+    style = "fade"
+})
+
+hl.animation({
+    leaf = "layersIn",
+    enabled = true,
+    speed = 5,
+    bezier = "smoothIn",
+    style = "fade"
+})
+
+hl.animation({
+    leaf = "layersOut",
+    enabled = true,
+    speed = 6,
+    bezier = "smoothOut",
+    style = "fade"
+})
+
+hl.animation({
+    leaf = "fade",
+    enabled = true,
+    speed = 5,
+    bezier = "smoothWindow"
+})
+
+hl.animation({
+    leaf = "workspaces",
+    enabled = true,
+    speed = 5,
+    bezier = "smoothWindow",
+    style = "slidevert"
+})
+
+hl.animation({
+    leaf = "specialWorkspaceIn",
+    enabled = true,
+    speed = 5,
+    bezier = "smoothIn",
+    style = "slidefade"
+})
+
+hl.animation({
+    leaf = "specialWorkspaceOut",
+    enabled = true,
+    speed = 6,
+    bezier = "smoothOut",
+    style = "slidefade"
+})

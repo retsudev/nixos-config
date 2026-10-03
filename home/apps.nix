@@ -4,5 +4,6 @@
     mpv
     qbittorrent
     zen-browser
+    libreoffice-qt
   ];
 }

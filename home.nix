@@ -52,6 +52,9 @@
     with pkgs;
     [
       pulseaudio
+      corefonts
+      font-awesome
+      nerd-fonts.iosevka
     ];
 
   fonts.fontconfig.enable = true;

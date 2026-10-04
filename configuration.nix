@@ -74,13 +74,9 @@
       "networkmanager"
       "video"
       "input"
-      "vboxusers"
     ];
     shell = pkgs.fish;
   };
-
-  # Enable virtualisation
-  virtualisation.virtualbox.host.enable = true;
   # System Wide programs
   programs = {
     fish.enable = true;

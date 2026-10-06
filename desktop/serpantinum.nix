@@ -5,6 +5,18 @@
   ...
 }:
 
+let
+  system = pkgs.stdenv.hostPlatform.system;
+
+  serpantinum-patched =
+    serpantinum.packages.${system}.default.overrideAttrs (old: {
+      postPatch = ''
+        substituteInPlace src/quickshell/widgets/faces/usage/RamFace.qml \
+          --replace-fail 'icon: "\uF538"' \
+            'icon: String.fromCodePoint(0xF035C)'
+      '';
+    });
+in
 {
   imports = [
     serpantinum.homeManagerModules.default
@@ -12,6 +24,7 @@
 
   programs.serpantinum = {
     enable = true;
+    package = serpantinum-patched;
     systemd.enable = true;
 
     settings = {
@@ -28,9 +41,12 @@
         style = "solid";
         width = 40;
         workspaceCount = 10;
+
         modules = {
           left = [ "workspaces" ];
+
           center = [ "time" ];
+
           right = [
             "tray"
             [
@@ -57,8 +73,10 @@
       };
     };
   };
+
   home.packages = with pkgs; [
     adwaita-icon-theme
     cliphist
+    nerd-fonts.symbols-only
   ];
 }

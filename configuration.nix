@@ -82,12 +82,6 @@
     fish.enable = true;
   };
 
-  # Steam settings
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
-
   # Serpantinum shell
   programs.serpantinum.enable = true;
 

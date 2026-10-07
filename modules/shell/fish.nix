@@ -8,7 +8,8 @@
       zoxide init fish | source
 
       set -gx UNDO_KEEP 5
-      set -gx UNDO_MAX_STORE 256MiB
+      set -gx UNDO_MAX_STORE 268435456
+      set -gx UNDO_MAX_BYTES 268435456
       source ${undo}/share/undo/undo.fish
       bind ctrl-backspace backward-kill-path-component
       bind alt-backspace backward-kill-path-component

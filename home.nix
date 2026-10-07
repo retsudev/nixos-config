@@ -21,6 +21,7 @@
     ./modules/programs/lazyvim/default.nix
     ./modules/programs/obs.nix
     ./modules/programs/yazi.nix
+    ./modules/programs/zk.nix
     ./modules/misc/cursor.nix
   ];
 

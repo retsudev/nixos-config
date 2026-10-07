@@ -49,4 +49,6 @@
     # --- Safety ---
     undo
   ];
+
+  programs.zk.enable = true;
 }

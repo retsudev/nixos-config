@@ -19,7 +19,6 @@
     ./modules/shell/kitty.nix
     ./modules/shell/starship.nix
     ./modules/programs/lazyvim/default.nix
-    ./modules/programs/obsidian.nix
     ./modules/programs/obs.nix
     ./modules/programs/yazi.nix
     ./modules/misc/cursor.nix

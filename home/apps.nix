@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     mpv
-    qbittorrent
     zen-browser
   ];
 }

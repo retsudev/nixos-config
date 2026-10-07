@@ -6,6 +6,9 @@
     interactiveShellInit = ''
       set fish_greeting
       zoxide init fish | source
+
+      set -gx UNDO_KEEP 5
+      set -gx UNDO_MAX_STORE 256MiB
       source ${undo}/share/undo/undo.fish
       bind ctrl-backspace backward-kill-path-component
       bind alt-backspace backward-kill-path-component

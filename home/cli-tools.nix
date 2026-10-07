@@ -1,4 +1,4 @@
-{ pkgs, pyroclear, ... }:
+{ pkgs, pyroclear, undo, ... }:
 {
   home.packages = with pkgs; [
     # --- Navigation & search ---
@@ -45,5 +45,8 @@
 
     # --- Misc ---
     pyroclear
+
+    # --- Safety ---
+    undo
   ];
 }

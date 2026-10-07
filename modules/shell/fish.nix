@@ -1,4 +1,4 @@
-{ ... }:
+{ undo, ... }:
 
 {
   programs.fish = {
@@ -6,6 +6,7 @@
     interactiveShellInit = ''
       set fish_greeting
       zoxide init fish | source
+      source ${undo}/share/undo/undo.fish
       bind ctrl-backspace backward-kill-path-component
       bind alt-backspace backward-kill-path-component
     '';

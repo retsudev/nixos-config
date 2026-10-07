@@ -26,6 +26,12 @@ home.packages = with pkgs; [
   jdt-language-server
   ant
 
+  # Lua
+  lua
+  luarocks
+  stylua
+  lua-language-server
+
   # Web-Dev-Stack
   live-server
   nodejs

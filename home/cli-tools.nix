@@ -40,9 +40,6 @@
     cava
     tty-clock
 
-    # --- Studies ---
-    exercism
-
     # --- Docs ---
     tldr
 

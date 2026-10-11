@@ -28,6 +28,18 @@
     };
   };
 
+
+  # BubbleWrap
+  security.allowUserNamespaces = true;
+  environment.systemPackages = with pkgs; [
+    bubblewrap
+  ];
+
+  # Art / Graphics Tablet
+  hardware.opentabletdriver.enable = true;
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
+
   # auto-delete generations
   nix.gc = {
     automatic = true;

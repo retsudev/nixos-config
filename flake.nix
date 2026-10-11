@@ -26,6 +26,9 @@
       url = "github:shreyanth-sureshkrishnaa/pyroclear";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    codex-nix = {
+      url = "github:SecBear/codex-nix";
+    };
     undo = {
       url = "github:edaywalid/undo";
     };
@@ -42,6 +45,7 @@
       serpantinum,
       pyroclear,
       undo,
+      codex-nix,
       ...
     }:
 
@@ -79,6 +83,7 @@
           pyroclear = inputs.pyroclear.packages.${system}.default;
           zen-browser = zen-browser.packages.${system}.default;
           undo = inputs.undo.packages.${system}.default;
+          codex-nix = inputs.codex-nix.packages.${system}.default;
         };
         modules = [
           ./home.nix

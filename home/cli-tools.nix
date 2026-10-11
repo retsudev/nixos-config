@@ -1,6 +1,10 @@
-{ pkgs, pyroclear, undo, ... }:
+{ pkgs, pyroclear, undo, codex-nix, ... }:
 {
   home.packages = with pkgs; [
+
+    # --- WorkFlow ---
+    codex-nix
+
     # --- Navigation & search ---
     zoxide
     fzf

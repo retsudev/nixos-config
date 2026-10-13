@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   notesDir = "${config.home.homeDirectory}/notes";
@@ -28,6 +28,7 @@ in
 
       tool = {
         editor = "nvim";
+        shell = "${pkgs.fish}/bin/fish";
       };
 
       group = {
@@ -68,11 +69,6 @@ in
 
       alias = {
         daily = ''zk new --no-input "$ZK_NOTEBOOK_DIR/daily"'';
-
-        idea = ''zk new "$ZK_NOTEBOOK_DIR/ideas" "$@"'';
-        prog = ''zk new "$ZK_NOTEBOOK_DIR/programming" "$@"'';
-        uni = ''zk new "$ZK_NOTEBOOK_DIR/university" "$@"'';
-
         find = "zk edit --interactive";
         last = "zk edit --limit 1 --sort modified-";
       };

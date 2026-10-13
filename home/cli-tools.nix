@@ -15,6 +15,10 @@
     eza
     bat
 
+    # --- Images & Videos ---
+    imagemagick
+    ffmpeg
+
     # -- Git ---
     git
     delta

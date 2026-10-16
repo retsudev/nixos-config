@@ -43,6 +43,9 @@
     { device = "/dev/disk/by-uuid/db3d6ef3-f244-4c4d-bbd5-b3b587b047f5"; }
   ];
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 };

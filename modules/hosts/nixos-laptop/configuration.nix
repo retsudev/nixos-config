@@ -7,8 +7,12 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     environment.systemPackages = with pkgs; [
-      nvim
+      git
+      vim
     ];
+
+    # Do not change it
+    system.stateVersion = "26.05";
   };
 }
 

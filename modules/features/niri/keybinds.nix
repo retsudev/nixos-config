@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.wrappersModules.niri = { lib, pkgs, ...}: {
+  flake.wrappers.niri = { lib, pkgs, ...}: {
     settings.gestures.hot-corners = { off = _: { }; };
 
     settings.binds = {
@@ -51,18 +51,6 @@
       "Mod+T".spawn-sh = lib.getExe pkgs.kitty;
       "Mod+W".spawn-sh = "zen";
       "Mod+E".spawn-sh = "${lib.getExe pkgs.kitty} -e yazi";
-
-      # ── Вызовы serpantinum ──
-      "Mod+R".spawn-sh = "serpantinum reload";
-      "Mod+C".spawn-sh = "serpantinum msg toggle clipboard";
-      "Mod+Space".spawn-sh = "serpantinum msg toggle launcher";
-      "Mod+M".spawn-sh = "serpantinum msg toggle music";
-      "Mod+B".spawn-sh = "serpantinum msg toggle system";
-      "Mod+P".spawn-sh = "serpantinum msg toggle wallpaper";
-      "Mod+D".spawn-sh = "serpantinum msg toggle calendar";
-      "Mod+N".spawn-sh = "serpantinum msg toggle network";
-      "Mod+V".spawn-sh = "serpantinum msg toggle volume";
-      "Mod+G".spawn-sh = "serpantinum msg toggle guide";
 
       # ── Рабочие пространства ──
       "Mod+Tab".toggle-overview = _: { };

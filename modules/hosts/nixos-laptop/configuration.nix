@@ -1,7 +1,7 @@
 { self, inputs, ...}: {
-  flake.nixosModules.nixos-laptopConfiguration = {pkgs, lib, ... }: {
+  flake.modules.nixos.nixos-laptopConfiguration = {pkgs, lib, ... }: {
     imports = [
-      self.nixosModules.nixos-laptopHardware
+      self.modules.nixos.nixos-laptopHardware
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -11,7 +11,7 @@
       vim
     ];
 
-    # Do not change it
+    # Do NOT change it
     system.stateVersion = "26.05";
   };
 }

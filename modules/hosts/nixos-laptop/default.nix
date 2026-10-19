@@ -2,7 +2,7 @@
 
   flake.nixosConfigurations.nixos-laptop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.nixos-laptopConfiguration
+      self.modules.nixos.nixos-laptopConfiguration
     ];
   };
 

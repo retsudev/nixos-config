@@ -1,24 +1,15 @@
-{ self, inputs, ... }: {
-  perSystem = { pkgs, lib, ... }: {
-    packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
-      inherit pkgs;
+{ self, ... }:
+{
+  flake.wrappers.niri = { wlib, ... }: {
+    imports = [
+      wlib.wrapperModules.niri
+    ];
+  };
 
-      imports = [
-        self.wrappersModules.niri
-      ];
-
-      settings = {
-        input.keyboard = {
-          xkb.layout = "us,ru";
-        };
-
-        layout.gaps = 5;
-
-        binds = {
-          "Mod+T".spawn-sh = lib.getExe pkgs.kitty;
-          "Mod+Q".close-window = _: { };
-        };
-      };
+  flake.modules.nixos.niri = { pkgs, ... }: {
+    programs.niri = {
+      enable = true;
+      package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
     };
   };
 }

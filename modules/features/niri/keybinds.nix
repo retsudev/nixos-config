@@ -1,0 +1,133 @@
+{ ... }:
+{
+  flake.wrappersModules.niri = { lib, pkgs, ...}: {
+    settings.gestures.hot-corners = { off = _: { }; };
+
+    settings.binds = {
+      # ── Навигация ──
+      "Mod+Left".focus-column-left = _: { };
+      "Mod+Right".focus-column-right = _: { };
+      "Mod+Up".focus-window-up = _: { };
+      "Mod+Down".focus-window-down = _: { };
+
+      # ── Перемещение окон ──
+      "Mod+Ctrl+Left".move-column-left = _: { };
+      "Mod+Ctrl+Right".move-column-right = _: { };
+      "Mod+Ctrl+Up".move-window-up = _: { };
+      "Mod+Ctrl+Down".move-window-down = _: { };
+
+      # ── Изменение размера ──
+      "Mod+Shift+Left".set-column-width = "-10%";
+      "Mod+Shift+Right".set-column-width = "+10%";
+      "Mod+Shift+Up".set-window-height = "-10%";
+      "Mod+Shift+Down".set-window-height = "+10%";
+
+      # ── Закрытие / завершение ──
+      "Mod+Q".close-window = _: { };
+      "Mod+Shift+Q".quit = _: { };
+
+      # ── Плавающее окно ──
+      "Mod+F".toggle-window-floating = _: { };
+
+      # ── Яркость ──
+      "XF86MonBrightnessDown".spawn-sh = "brightnessctl set 5%-";
+      "XF86MonBrightnessUp".spawn-sh = "brightnessctl set +5%";
+
+      # ── Скриншоты ──
+      "Mod+S".spawn-sh = "serpantinum screenshot";
+      "Mod+Shift+S".spawn-sh = "serpantinum screenshot --full";
+
+      # ── Блокировка ──
+      "XF86PowerOff".spawn-sh = "serpantinum lock";
+      "Mod+L".spawn-sh = "serpantinum lock";
+
+      # ── Аудио ──
+      "XF86AudioMicMute".spawn-sh = "serpantinum volume mic-toggle";
+      "XF86AudioMute".spawn-sh = "serpantinum volume mute-toggle";
+      "XF86AudioLowerVolume".spawn-sh = "serpantinum volume lower";
+      "XF86AudioRaiseVolume".spawn-sh = "serpantinum volume raise";
+
+      # ── Запуск приложений ──
+      "Mod+T".spawn-sh = lib.getExe pkgs.kitty;
+      "Mod+W".spawn-sh = "zen";
+      "Mod+E".spawn-sh = "${lib.getExe pkgs.kitty} -e yazi";
+
+      # ── Вызовы serpantinum ──
+      "Mod+R".spawn-sh = "serpantinum reload";
+      "Mod+C".spawn-sh = "serpantinum msg toggle clipboard";
+      "Mod+Space".spawn-sh = "serpantinum msg toggle launcher";
+      "Mod+M".spawn-sh = "serpantinum msg toggle music";
+      "Mod+B".spawn-sh = "serpantinum msg toggle system";
+      "Mod+P".spawn-sh = "serpantinum msg toggle wallpaper";
+      "Mod+D".spawn-sh = "serpantinum msg toggle calendar";
+      "Mod+N".spawn-sh = "serpantinum msg toggle network";
+      "Mod+V".spawn-sh = "serpantinum msg toggle volume";
+      "Mod+G".spawn-sh = "serpantinum msg toggle guide";
+
+      # ── Рабочие пространства ──
+      "Mod+Tab".toggle-overview = _: { };
+
+      "Mod+1".focus-workspace = 1;
+      "Mod+2".focus-workspace = 2;
+      "Mod+3".focus-workspace = 3;
+      "Mod+4".focus-workspace = 4;
+      "Mod+5".focus-workspace = 5;
+      "Mod+6".focus-workspace = 6; 
+      "Mod+7".focus-workspace = 7;
+      "Mod+8".focus-workspace = 8;
+      "Mod+9".focus-workspace = 9;
+      "Mod+0".focus-workspace = 10;
+ 
+      "Mod+Shift+1".move-column-to-workspace = 1;
+      "Mod+Shift+2".move-column-to-workspace = 2;
+      "Mod+Shift+3".move-column-to-workspace = 3;
+      "Mod+Shift+4".move-column-to-workspace = 4;
+      "Mod+Shift+5".move-column-to-workspace = 5;
+      "Mod+Shift+6".move-column-to-workspace = 6;
+      "Mod+Shift+7".move-column-to-workspace = 7;
+      "Mod+Shift+8".move-column-to-workspace = 8;
+      "Mod+Shift+9".move-column-to-workspace = 9;
+      "Mod+Shift+0".move-column-to-workspace = 10;
+
+      "Mod+Ctrl+1".move-window-to-workspace = _: {
+        props = [{ focus = false; } 1];
+      };
+
+      "Mod+Ctrl+2".move-window-to-workspace = _: {
+        props = [{ focus = false; } 2];
+      };
+
+      "Mod+Ctrl+3".move-window-to-workspace = _: {
+        props = [{ focus = false; } 3];
+      };
+
+      "Mod+Ctrl+4".move-window-to-workspace = _: {
+        props = [{ focus = false; } 4];
+      };
+
+      "Mod+Ctrl+5".move-window-to-workspace = _: {
+        props = [{ focus = false; } 5];
+      };
+
+      "Mod+Ctrl+6".move-window-to-workspace = _: {
+        props = [{ focus = false; } 6];
+      };
+
+      "Mod+Ctrl+7".move-window-to-workspace = _: {
+        props = [{ focus = false; } 7];
+      };
+
+      "Mod+Ctrl+8".move-window-to-workspace = _: {
+        props = [{ focus = false; } 8];
+      };
+
+      "Mod+Ctrl+9".move-window-to-workspace = _: {
+        props = [{ focus = false; } 9];
+      };
+
+      "Mod+Ctrl+0".move-window-to-workspace = _: {
+        props = [{ focus = false; } 10];
+      };
+    };
+  };
+}

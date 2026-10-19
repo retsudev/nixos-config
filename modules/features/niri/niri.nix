@@ -3,6 +3,10 @@
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
 
+      imports = [
+        self.wrappersModules.niri
+      ];
+
       settings = {
         input.keyboard = {
           xkb.layout = "us,ru";

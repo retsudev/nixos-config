@@ -1,7 +1,9 @@
 { ... }:
 {
-  flake.wrappers.niri = { lib, pkgs, ...}: {
-    settings.gestures.hot-corners = { off = _: { }; };
+  flake.wrappers.niri = { lib, pkgs, ... }: {
+    settings.gestures.hot-corners = {
+      off = _: { };
+    };
 
     settings.binds = {
       # ── Навигация ──
@@ -30,22 +32,24 @@
       "Mod+F".toggle-window-floating = _: { };
 
       # ── Яркость ──
-      "XF86MonBrightnessDown".spawn-sh = "brightnessctl set 5%-";
-      "XF86MonBrightnessUp".spawn-sh = "brightnessctl set +5%";
+      "XF86MonBrightnessDown".spawn-sh =
+        "noctalia msg brightness-down current 5%";
+      "XF86MonBrightnessUp".spawn-sh =
+        "noctalia msg brightness-up current 5%";
 
       # ── Скриншоты ──
-      "Mod+S".spawn-sh = "serpantinum screenshot";
-      "Mod+Shift+S".spawn-sh = "serpantinum screenshot --full";
+      "Mod+S".spawn-sh = "noctalia msg screenshot-region";
+      "Mod+Shift+S".spawn-sh = "noctalia msg screenshot-fullscreen";
 
       # ── Блокировка ──
-      "XF86PowerOff".spawn-sh = "serpantinum lock";
-      "Mod+L".spawn-sh = "serpantinum lock";
+      "XF86PowerOff".spawn-sh = "noctalia msg session lock";
+      "Mod+L".spawn-sh = "noctalia msg session lock";
 
       # ── Аудио ──
-      "XF86AudioMicMute".spawn-sh = "serpantinum volume mic-toggle";
-      "XF86AudioMute".spawn-sh = "serpantinum volume mute-toggle";
-      "XF86AudioLowerVolume".spawn-sh = "serpantinum volume lower";
-      "XF86AudioRaiseVolume".spawn-sh = "serpantinum volume raise";
+      "XF86AudioMicMute".spawn-sh = "noctalia msg mic-mute";
+      "XF86AudioMute".spawn-sh = "noctalia msg volume-mute";
+      "XF86AudioLowerVolume".spawn-sh = "noctalia msg volume-down";
+      "XF86AudioRaiseVolume".spawn-sh = "noctalia msg volume-up";
 
       # ── Запуск приложений ──
       "Mod+T".spawn-sh = lib.getExe pkgs.kitty;
@@ -60,12 +64,12 @@
       "Mod+3".focus-workspace = 3;
       "Mod+4".focus-workspace = 4;
       "Mod+5".focus-workspace = 5;
-      "Mod+6".focus-workspace = 6; 
+      "Mod+6".focus-workspace = 6;
       "Mod+7".focus-workspace = 7;
       "Mod+8".focus-workspace = 8;
       "Mod+9".focus-workspace = 9;
       "Mod+0".focus-workspace = 10;
- 
+
       "Mod+Shift+1".move-column-to-workspace = 1;
       "Mod+Shift+2".move-column-to-workspace = 2;
       "Mod+Shift+3".move-column-to-workspace = 3;

@@ -11,6 +11,10 @@
       vim
     ];
 
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+
+    desktop.autoLoginUser = "retsudev";
+
     # Do NOT change it
     system.stateVersion = "26.05";
   };

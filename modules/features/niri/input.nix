@@ -8,6 +8,7 @@
       };
 
       touchpad = {
+        tap = _: { };
         natural-scroll = _: { };
         dwt = _: { };
         accel-profile = "flat";

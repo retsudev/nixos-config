@@ -8,7 +8,7 @@
     runtimePkgs = [
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       self.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser
-      pkgs.kitty
+      self.packages.${pkgs.stdenv.hostPlatform.system}.kitty
       pkgs.yazi
     ];
   };

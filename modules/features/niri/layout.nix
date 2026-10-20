@@ -15,5 +15,6 @@
       border.off = _: { };
       shadow.off = _: { };
     };
+    settings.prefer-no-csd = _: { };
   };
 }

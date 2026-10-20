@@ -14,6 +14,9 @@
         accel-profile = "flat";
       };
       mouse.accel-profile = "flat";
+      focus-follows-mouse = _: {
+        props.max-scroll-amount = "0%";
+      };
     };
   };
 }

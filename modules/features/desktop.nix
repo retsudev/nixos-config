@@ -4,6 +4,9 @@
     imports = [
       self.modules.nixos.niri
       self.modules.nixos.noctalia
+      self.modules.nixos.kitty
+      self.modules.nixos.fish
+      self.modules.nixos.starship
     ];
 
     options.desktop.autoLoginUser = lib.mkOption {

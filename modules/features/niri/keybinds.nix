@@ -1,6 +1,10 @@
-{ ... }:
+{ self, ... }:
 {
-  flake.wrappers.niri = { lib, pkgs, ... }: {
+  
+  flake.wrappers.niri = { lib, pkgs, ... }:  
+  let
+    kitty = self.packages.${pkgs.stdenv.hostPlatform.system}.kitty;
+  in {
     settings.gestures.hot-corners = {
       off = _: { };
     };
@@ -52,9 +56,9 @@
       "XF86AudioRaiseVolume".spawn-sh = "noctalia msg volume-up";
 
       # ── Запуск приложений ──
-      "Mod+T".spawn-sh = lib.getExe pkgs.kitty;
+      "Mod+T".spawn-sh = lib.getExe kitty;
       "Mod+W".spawn-sh = "zen";
-      "Mod+E".spawn-sh = "${lib.getExe pkgs.kitty} -e yazi";
+      "Mod+E".spawn-sh = "${lib.getExe kitty} -e yazi";
 
       # ── Рабочие пространства ──
       "Mod+Tab".toggle-overview = _: { };

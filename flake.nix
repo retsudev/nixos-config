@@ -3,24 +3,23 @@
   description = "RetsuDevs NixOS dendritic flake";
 
   inputs = {
+    # pkg branches
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # dendritic flake deps
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
-
-    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
-
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    wrapper-modules = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    # additional programs
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
   };
 
   # import modules/ automatically

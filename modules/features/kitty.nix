@@ -15,7 +15,6 @@
       shell = "${fish}/bin/fish";
 
       window_padding_width = 10;
-      background_opacity = 0.68;
       remember_window_size = false;
     };
 

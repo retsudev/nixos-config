@@ -26,6 +26,7 @@
     time.timeZone = "Europe/Moscow";
     services.blueman.enable = true;
     services.upower.enable = true;
+    services.power-profiles-daemon.enable = true;
     services.pipewire = {
       enable = true;
       alsa.enable = true;

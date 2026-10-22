@@ -1,6 +1,6 @@
 { self, inputs, ...}: {
 
-  flake.modules.nixos.nixos-laptopHardware =
+  flake.modules.nixos.laptopHardware =
 {
   config,
   lib,

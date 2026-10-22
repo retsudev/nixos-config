@@ -26,7 +26,7 @@
 
     undo.url = "github:edaywalid/undo";
 
-    inir.url = "github:snowarch/inir";
+    serpantinum.url = "github:ilyamiro/serpantinum";
   };
 
   # import modules/ automatically

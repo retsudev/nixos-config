@@ -9,7 +9,6 @@
       backupFileExtension = "hm-backup-previous";
       extraSpecialArgs = {
         inherit inputs;
-        niriPackage = config.programs.niri.package;
       };
       users.retsudev = self.modules.homeManager.retsudev;
     };

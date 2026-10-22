@@ -2,7 +2,8 @@
 {
   flake.modules.nixos.desktop = { config, lib, pkgs, ... }: {
     imports = [
-      self.modules.nixos.niri
+      self.modules.nixos.hyprland
+      self.modules.nixos.serpantinum
     ];
 
     options.desktop.autoLoginUser = lib.mkOption {
@@ -16,12 +17,12 @@
 
         settings = {
           initial_session = {
-            command = "${config.programs.niri.package}/bin/niri-session";
+            command = "${config.programs.hyprland.package}/bin/Hyprland";
             user = config.desktop.autoLoginUser;
           };
 
           default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${config.programs.niri.package}/bin/niri-session";
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${config.programs.hyprland.package}/bin/Hyprland";
             user = "greeter";
           };
         };

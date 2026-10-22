@@ -1,13 +1,11 @@
 { self, ... }:
 {
-  flake.modules.homeManager.niriKeybinds = { config, lib, pkgs, ... }:
+  flake.modules.homeManager.niriKeybinds = { lib, pkgs, ... }:
   let
     system = pkgs.stdenv.hostPlatform.system;
     kitty = lib.getExe pkgs.kitty;
     zen = lib.getExe self.packages.${system}.zen-browser;
     yazi = lib.getExe pkgs.yazi;
-    inir = lib.getExe config.programs.inir.package;
-    inirAction = target: action: { spawn = [ inir target action ]; };
   in {
     wayland.windowManager.niri.settings = {
       gestures.hot-corners.off = { };
@@ -37,34 +35,6 @@
 
       # ── Плавающее окно ──
       "Mod+F".toggle-window-floating = { };
-
-      # ── iNiR ──
-      "Mod+O" = inirAction "orbit" "toggle";
-      "Mod+Space" = inirAction "overview" "toggle";
-      "Mod+Shift+Space" = inirAction "controlPanel" "toggle";
-      "Mod+A" = inirAction "sidebarLeft" "toggle";
-      "Mod+N" = inirAction "sidebarRight" "toggle";
-      "Mod+Slash" = inirAction "cheatsheet" "toggle";
-      "Mod+V" = inirAction "clipboard" "toggle";
-      "Mod+Comma" = { spawn = [ inir "settings" ]; };
-      "Mod+L" = inirAction "lock" "activate";
-      "XF86PowerOff" = inirAction "lock" "activate";
-      "Mod+Alt+L" = { spawn = [ inir "colorMode" "set" "toggle" ]; };
-      "Mod+F12" = inirAction "gamemode" "toggle";
-      "Mod+Shift+Escape" = inirAction "session" "toggle";
-      "Mod+Alt+Space" = inirAction "mpris" "playPause";
-
-      "XF86MonBrightnessDown" = inirAction "brightness" "decrement";
-      "XF86MonBrightnessUp" = inirAction "brightness" "increment";
-      "Mod+S" = { spawn = [ inir "desktopAction" "screenshot" ]; };
-      "Mod+Shift+S" = inirAction "region" "screenshot";
-      "Mod+Shift+T" = inirAction "region" "ocr";
-      "Mod+Shift+R" = inirAction "region" "record";
-
-      "XF86AudioMicMute" = inirAction "audio" "micMute";
-      "XF86AudioMute" = inirAction "audio" "mute";
-      "XF86AudioLowerVolume" = inirAction "audio" "volumeDown";
-      "XF86AudioRaiseVolume" = inirAction "audio" "volumeUp";
 
       # ── Запуск приложений ──
       "Mod+T" = { spawn = [ kitty ]; };

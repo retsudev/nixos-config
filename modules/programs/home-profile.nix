@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.modules.homeManager.retsudev = { config, lib, pkgs, ... }: {
+  flake.modules.homeManager.retsudev = { pkgs, ... }: {
     imports = [
       self.modules.homeManager.cli-tools
       self.modules.homeManager.developer-tools
@@ -9,12 +9,13 @@
       self.modules.homeManager.fish
       self.modules.homeManager.kitty
       self.modules.homeManager.starship
-      self.modules.homeManager.niri
-      self.modules.homeManager.niriInput
-      self.modules.homeManager.niriKeybinds
-      self.modules.homeManager.niriLayout
-      self.modules.homeManager.niriWindowRules
-      self.modules.homeManager.inir
+      self.modules.homeManager.hyprland
+      self.modules.homeManager.hyprlandSettings
+      self.modules.homeManager.hyprlandInput
+      self.modules.homeManager.hyprlandMonitors
+      self.modules.homeManager.hyprlandAutostart
+      self.modules.homeManager.hyprlandKeybinds
+      self.modules.homeManager.serpantinum
       self.modules.homeManager.studio-package
       self.modules.homeManager.zen-browser
       self.modules.homeManager.codex
@@ -34,12 +35,6 @@
         nerd-fonts.iosevka
       ];
     };
-
-    # iNiR defaults its wallpaper library to ~/Pictures/Wallpapers. Ensure
-    # that folder exists so its local wallpaper scanner has a directory to read.
-    home.activation.ensureInirWallpapersDirectory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir -p "${config.xdg.userDirs.pictures}/Wallpapers"
-    '';
 
     fonts.fontconfig.enable = true;
     programs.home-manager.enable = true;

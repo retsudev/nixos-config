@@ -3,10 +3,6 @@
   flake.modules.nixos.desktop = { config, lib, pkgs, ... }: {
     imports = [
       self.modules.nixos.niri
-      self.modules.nixos.noctalia
-      self.modules.nixos.kitty
-      self.modules.nixos.fish
-      self.modules.nixos.starship
     ];
 
     options.desktop.autoLoginUser = lib.mkOption {
@@ -20,7 +16,7 @@
 
         settings = {
           initial_session = {
-            command = "${pkgs.niri}/bin/niri-session";
+            command = "${config.programs.niri.package}/bin/niri-session";
             user = config.desktop.autoLoginUser;
           };
 
@@ -33,19 +29,4 @@
     };
   };
 
-  perSystem = { pkgs, self', ... }: {
-    packages.desktop = pkgs.writeShellApplication {
-      name = "desktop";
-
-      runtimeInputs = [
-        self'.packages.niri
-        self'.packages.zen-browser
-        pkgs.niri
-      ];
-
-      text = ''
-        exec ${pkgs.niri}/bin/niri-session "$@"
-      '';
-    };
-  };
 }

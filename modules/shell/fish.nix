@@ -1,34 +1,25 @@
-{ self, ... } :
+{ ... }:
 {
-  flake.wrappers.fish = { pkgs, wlib, ...}: 
-  let
-    starship = self.packages.${pkgs.stdenv.hostPlatform.system}.starship;
-  in
-    {
-    imports = [ wlib.wrapperModules.fish ];
+  flake.modules.homeManager.fish = { pkgs, ... }: {
+    programs.fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set -g fish_greeting
 
-    runtimePkgs = [ pkgs.zoxide pkgs.eza ];
+        bind ctrl-backspace backward-kill-path-component
+        bind alt-backspace backward-kill-path-component
 
-    configFile.content = ''
-      if status is-interactive
-      set -g fish_greeting
+        if test -f ~/.config/fish/aliases.fish
+          source ~/.config/fish/aliases.fish
+        end
+      '';
+    };
 
-      starship init fish | source
-      zoxide init fish | source
+    programs.zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
-      bind ctrl-backspace backward-kill-path-component
-      bind alt-backspace backward-kill-path-component
-
-      if test -f ~/.config/fish/aliases.fish
-        source ~/.config/fish/aliases.fish
-      end
-    end
-  '';
-  };
-
-  flake.modules.nixos.fish = { pkgs, ... }: {
-    environment.systemPackages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.fish
-    ];
+    home.packages = with pkgs; [ eza ];
   };
 }

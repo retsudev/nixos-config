@@ -6,6 +6,15 @@
       self.modules.homeManager.developer-tools
       self.modules.homeManager.desktop-apps
       self.modules.homeManager.workflow-tools
+      self.modules.homeManager.fish
+      self.modules.homeManager.kitty
+      self.modules.homeManager.starship
+      self.modules.homeManager.niri
+      self.modules.homeManager.niriInput
+      self.modules.homeManager.niriKeybinds
+      self.modules.homeManager.niriLayout
+      self.modules.homeManager.niriWindowRules
+      self.modules.homeManager.inir
       self.modules.homeManager.studio-package
       self.modules.homeManager.zen-browser
       self.modules.homeManager.codex

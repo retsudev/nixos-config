@@ -1,22 +1,26 @@
-{ self, inputs, ... }:
+{ ... }:
 {
-  flake.wrappers.niri = { pkgs, wlib, ... }: {
-    imports = [
-      wlib.wrapperModules.niri
-    ];
-
-    runtimePkgs = [
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-      self.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser
-      self.packages.${pkgs.stdenv.hostPlatform.system}.kitty
-      pkgs.yazi
-    ];
-  };
-
   flake.modules.nixos.niri = { pkgs, ... }: {
     programs.niri = {
       enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+      package = pkgs.niri;
     };
   };
+
+  flake.modules.homeManager.niri = { niriPackage, ... }: {
+    wayland.windowManager.niri = {
+      enable = true;
+      package = niriPackage;
+      systemd.enable = false;
+      settings = {
+        debug.honor-xdg-activation-with-invalid-serial = { };
+
+        # iNiR's launcher reads this from Niri's app environment. The pinned
+        # launcher runs with `set -e` and currently exits if its final
+        # optional environment lookup is empty.
+        environment.ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      };
+    };
+  };
+
 }

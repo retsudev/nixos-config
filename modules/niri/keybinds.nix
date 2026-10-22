@@ -1,26 +1,29 @@
 { self, ... }:
 {
-  
-  flake.wrappers.niri = { lib, pkgs, ... }:  
+  flake.modules.homeManager.niriKeybinds = { config, lib, pkgs, ... }:
   let
-    kitty = self.packages.${pkgs.stdenv.hostPlatform.system}.kitty;
+    system = pkgs.stdenv.hostPlatform.system;
+    kitty = lib.getExe pkgs.kitty;
+    zen = lib.getExe self.packages.${system}.zen-browser;
+    yazi = lib.getExe pkgs.yazi;
+    inir = lib.getExe config.programs.inir.package;
+    inirAction = target: action: { spawn = [ inir target action ]; };
   in {
-    settings.gestures.hot-corners = {
-      off = _: { };
-    };
+    wayland.windowManager.niri.settings = {
+      gestures.hot-corners.off = { };
 
-    settings.binds = {
+      binds = {
       # ── Навигация ──
-      "Mod+Left".focus-column-left = _: { };
-      "Mod+Right".focus-column-right = _: { };
-      "Mod+Up".focus-window-up = _: { };
-      "Mod+Down".focus-window-down = _: { };
+      "Mod+Left".focus-column-left = { };
+      "Mod+Right".focus-column-right = { };
+      "Mod+Up".focus-window-up = { };
+      "Mod+Down".focus-window-down = { };
 
       # ── Перемещение окон ──
-      "Mod+Ctrl+Left".move-column-left = _: { };
-      "Mod+Ctrl+Right".move-column-right = _: { };
-      "Mod+Ctrl+Up".move-window-up = _: { };
-      "Mod+Ctrl+Down".move-window-down = _: { };
+      "Mod+Ctrl+Left".move-column-left = { };
+      "Mod+Ctrl+Right".move-column-right = { };
+      "Mod+Ctrl+Up".move-window-up = { };
+      "Mod+Ctrl+Down".move-window-down = { };
 
       # ── Изменение размера ──
       "Mod+Shift+Left".set-column-width = "-10%";
@@ -29,39 +32,36 @@
       "Mod+Shift+Down".set-window-height = "+10%";
 
       # ── Закрытие / завершение ──
-      "Mod+Q".close-window = _: { };
-      "Mod+Shift+Q".quit = _: { };
+      "Mod+Q".close-window = { };
+      "Mod+Shift+Q".quit = { };
 
       # ── Плавающее окно ──
-      "Mod+F".toggle-window-floating = _: { };
+      "Mod+F".toggle-window-floating = { };
 
-      # ── Яркость ──
-      "XF86MonBrightnessDown".spawn-sh =
-        "noctalia msg brightness-down current 5%";
-      "XF86MonBrightnessUp".spawn-sh =
-        "noctalia msg brightness-up current 5%";
+      # ── iNiR ──
+      "Mod+Space" = inirAction "overview" "toggle";
+      "Mod+Shift+Space" = inirAction "controlPanel" "toggle";
+      "Mod+Comma" = { spawn = [ inir "settings" ]; };
+      "Mod+L" = inirAction "lock" "activate";
+      "XF86PowerOff" = inirAction "lock" "activate";
 
-      # ── Скриншоты ──
-      "Mod+S".spawn-sh = "noctalia msg screenshot-region";
-      "Mod+Shift+S".spawn-sh = "noctalia msg screenshot-fullscreen";
+      "XF86MonBrightnessDown" = inirAction "brightness" "decrement";
+      "XF86MonBrightnessUp" = inirAction "brightness" "increment";
+      "Mod+S" = inirAction "region" "screenshot";
+      "Mod+Shift+S" = { spawn = [ inir "desktopAction" "screenshot" ]; };
 
-      # ── Блокировка ──
-      "XF86PowerOff".spawn-sh = "noctalia msg session lock";
-      "Mod+L".spawn-sh = "noctalia msg session lock";
-
-      # ── Аудио ──
-      "XF86AudioMicMute".spawn-sh = "noctalia msg mic-mute";
-      "XF86AudioMute".spawn-sh = "noctalia msg volume-mute";
-      "XF86AudioLowerVolume".spawn-sh = "noctalia msg volume-down";
-      "XF86AudioRaiseVolume".spawn-sh = "noctalia msg volume-up";
+      "XF86AudioMicMute" = inirAction "audio" "micMute";
+      "XF86AudioMute" = inirAction "audio" "mute";
+      "XF86AudioLowerVolume" = inirAction "audio" "volumeDown";
+      "XF86AudioRaiseVolume" = inirAction "audio" "volumeUp";
 
       # ── Запуск приложений ──
-      "Mod+T".spawn-sh = lib.getExe kitty;
-      "Mod+W".spawn-sh = "zen";
-      "Mod+E".spawn-sh = "${lib.getExe kitty} -e yazi";
+      "Mod+T" = { spawn = [ kitty ]; };
+      "Mod+W" = { spawn = [ zen ]; };
+      "Mod+E" = { spawn = [ kitty "-e" yazi ]; };
 
       # ── Рабочие пространства ──
-      "Mod+Tab".toggle-overview = _: { };
+      "Mod+Tab".toggle-overview = { };
 
       "Mod+1".focus-workspace = 1;
       "Mod+2".focus-workspace = 2;
@@ -85,44 +85,16 @@
       "Mod+Shift+9".move-column-to-workspace = 9;
       "Mod+Shift+0".move-column-to-workspace = 10;
 
-      "Mod+Ctrl+1".move-window-to-workspace = _: {
-        props = [{ focus = false; } 1];
-      };
-
-      "Mod+Ctrl+2".move-window-to-workspace = _: {
-        props = [{ focus = false; } 2];
-      };
-
-      "Mod+Ctrl+3".move-window-to-workspace = _: {
-        props = [{ focus = false; } 3];
-      };
-
-      "Mod+Ctrl+4".move-window-to-workspace = _: {
-        props = [{ focus = false; } 4];
-      };
-
-      "Mod+Ctrl+5".move-window-to-workspace = _: {
-        props = [{ focus = false; } 5];
-      };
-
-      "Mod+Ctrl+6".move-window-to-workspace = _: {
-        props = [{ focus = false; } 6];
-      };
-
-      "Mod+Ctrl+7".move-window-to-workspace = _: {
-        props = [{ focus = false; } 7];
-      };
-
-      "Mod+Ctrl+8".move-window-to-workspace = _: {
-        props = [{ focus = false; } 8];
-      };
-
-      "Mod+Ctrl+9".move-window-to-workspace = _: {
-        props = [{ focus = false; } 9];
-      };
-
-      "Mod+Ctrl+0".move-window-to-workspace = _: {
-        props = [{ focus = false; } 10];
+      "Mod+Ctrl+1".move-window-to-workspace = { _props.focus = false; _args = [ 1 ]; };
+      "Mod+Ctrl+2".move-window-to-workspace = { _props.focus = false; _args = [ 2 ]; };
+      "Mod+Ctrl+3".move-window-to-workspace = { _props.focus = false; _args = [ 3 ]; };
+      "Mod+Ctrl+4".move-window-to-workspace = { _props.focus = false; _args = [ 4 ]; };
+      "Mod+Ctrl+5".move-window-to-workspace = { _props.focus = false; _args = [ 5 ]; };
+      "Mod+Ctrl+6".move-window-to-workspace = { _props.focus = false; _args = [ 6 ]; };
+      "Mod+Ctrl+7".move-window-to-workspace = { _props.focus = false; _args = [ 7 ]; };
+      "Mod+Ctrl+8".move-window-to-workspace = { _props.focus = false; _args = [ 8 ]; };
+      "Mod+Ctrl+9".move-window-to-workspace = { _props.focus = false; _args = [ 9 ]; };
+      "Mod+Ctrl+0".move-window-to-workspace = { _props.focus = false; _args = [ 10 ]; };
       };
     };
   };

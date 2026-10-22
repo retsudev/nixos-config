@@ -14,10 +14,6 @@
     # dendritic flake deps
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
-    wrapper-modules = {
-      url = "github:BirdeeHub/nix-wrapper-modules";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # additional programs
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -30,7 +26,7 @@
 
     undo.url = "github:edaywalid/undo";
 
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    inir.url = "github:snowarch/inir";
   };
 
   # import modules/ automatically
@@ -43,7 +39,6 @@
 
       imports = [
         inputs.flake-parts.flakeModules.modules
-        inputs.wrapper-modules.flakeModules.wrappers
         (inputs.import-tree [
 	  ./modules
 	  ./hosts

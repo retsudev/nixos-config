@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.nixosConfigurations.nixos-laptop = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.modules.nixos.laptopConfiguration
       self.modules.nixos.studio

@@ -6,6 +6,11 @@
     # pkg branches
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # dendritic flake deps
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
@@ -22,6 +27,8 @@
       url = "github:sadjow/codex-cli-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    undo.url = "github:edaywalid/undo";
 
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
   };

@@ -6,7 +6,7 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
-      backupFileExtension = "hm-backup";
+      backupFileExtension = "hm-backup-previous";
       extraSpecialArgs = {
         inherit inputs;
         niriPackage = config.programs.niri.package;

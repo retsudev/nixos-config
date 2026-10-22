@@ -15,7 +15,9 @@
       };
       shellIntegration.enableFishIntegration = true;
       extraConfig = ''
-        include current-theme.conf
+        # iNiR creates this file when it first applies terminal colors.
+        # globinclude keeps Kitty usable before that initial theme generation.
+        globinclude current-theme.conf
       '';
     };
   };

@@ -11,7 +11,8 @@
     wayland.windowManager.niri = {
       enable = true;
       package = niriPackage;
-      systemd.enable = false;
+      # iNiR is wired to niri.service, so install the matching user units.
+      systemd.enable = true;
       settings = {
         debug.honor-xdg-activation-with-invalid-serial = { };
 

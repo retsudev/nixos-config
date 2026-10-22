@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.modules.homeManager.retsudev = { pkgs, ... }: {
+  flake.modules.homeManager.retsudev = { config, lib, pkgs, ... }: {
     imports = [
       self.modules.homeManager.cli-tools
       self.modules.homeManager.developer-tools
@@ -34,6 +34,12 @@
         nerd-fonts.iosevka
       ];
     };
+
+    # iNiR defaults its wallpaper library to ~/Pictures/Wallpapers. Ensure
+    # that folder exists so its local wallpaper scanner has a directory to read.
+    home.activation.ensureInirWallpapersDirectory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p "${config.xdg.userDirs.pictures}/Wallpapers"
+    '';
 
     fonts.fontconfig.enable = true;
     programs.home-manager.enable = true;

@@ -39,16 +39,27 @@
       "Mod+F".toggle-window-floating = { };
 
       # ── iNiR ──
+      "Mod+O" = inirAction "orbit" "toggle";
       "Mod+Space" = inirAction "overview" "toggle";
       "Mod+Shift+Space" = inirAction "controlPanel" "toggle";
+      "Mod+A" = inirAction "sidebarLeft" "toggle";
+      "Mod+N" = inirAction "sidebarRight" "toggle";
+      "Mod+Slash" = inirAction "cheatsheet" "toggle";
+      "Mod+V" = inirAction "clipboard" "toggle";
       "Mod+Comma" = { spawn = [ inir "settings" ]; };
       "Mod+L" = inirAction "lock" "activate";
       "XF86PowerOff" = inirAction "lock" "activate";
+      "Mod+Alt+L" = { spawn = [ inir "colorMode" "set" "toggle" ]; };
+      "Mod+F12" = inirAction "gamemode" "toggle";
+      "Mod+Shift+Escape" = inirAction "session" "toggle";
+      "Mod+Alt+Space" = inirAction "mpris" "playPause";
 
       "XF86MonBrightnessDown" = inirAction "brightness" "decrement";
       "XF86MonBrightnessUp" = inirAction "brightness" "increment";
-      "Mod+S" = inirAction "region" "screenshot";
-      "Mod+Shift+S" = { spawn = [ inir "desktopAction" "screenshot" ]; };
+      "Mod+S" = { spawn = [ inir "desktopAction" "screenshot" ]; };
+      "Mod+Shift+S" = inirAction "region" "screenshot";
+      "Mod+Shift+T" = inirAction "region" "ocr";
+      "Mod+Shift+R" = inirAction "region" "record";
 
       "XF86AudioMicMute" = inirAction "audio" "micMute";
       "XF86AudioMute" = inirAction "audio" "mute";

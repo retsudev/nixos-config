@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   perSystem = { pkgs, ... }:
     let
@@ -12,4 +12,8 @@
         };
       };
     };
+
+  flake.modules.homeManager.zen-browser = { pkgs, ... }: {
+    home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser ];
+  };
 }

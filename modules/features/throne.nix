@@ -1,4 +1,4 @@
-{ self, ...}: {
+{ ... }: {
   flake.modules.nixos.throne = {
     programs.throne = {
       enable = true;

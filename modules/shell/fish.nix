@@ -7,7 +7,7 @@
     {
     imports = [ wlib.wrapperModules.fish ];
 
-    runtimePkgs = [ pkgs.zoxide ];
+    runtimePkgs = [ pkgs.zoxide pkgs.eza ];
 
     configFile.content = ''
       if status is-interactive

@@ -6,6 +6,7 @@
       self.modules.nixos.desktop
       self.modules.nixos.throne
       self.modules.nixos.users
+      self.modules.nixos.codex
     ];
   };
 

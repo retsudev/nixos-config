@@ -18,6 +18,10 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    codex-cli-nix = {
+      url = "github:sadjow/codex-cli-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
   };
@@ -33,7 +37,10 @@
       imports = [
         inputs.flake-parts.flakeModules.modules
         inputs.wrapper-modules.flakeModules.wrappers
-        (inputs.import-tree ./modules)
+        (inputs.import-tree [
+	  ./modules
+	  ./hosts
+	])
       ];
     };
 }

@@ -5,7 +5,7 @@
       self.modules.homeManager.cli-tools
       self.modules.homeManager.developer-tools
       self.modules.homeManager.desktop-apps
-      self.modules.homeManager.productivity
+      self.modules.homeManager.workflow-tools
       self.modules.homeManager.studio-package
       self.modules.homeManager.zen-browser
       self.modules.homeManager.codex

@@ -1,18 +1,21 @@
 { ... }:
 {
-  flake.modules.homeManager.hyprlandAutostart = { ... }: {
+  flake.modules.homeManager.hyprlandAutostart = { lib, ... }: {
     wayland.windowManager.hyprland.settings = {
-      env = [
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_SESSION_DESKTOP,Hyprland"
+      env = map (pair: { _args = pair; }) [
+        [ "XDG_CURRENT_DESKTOP" "Hyprland" ]
+        [ "XDG_SESSION_TYPE" "wayland" ]
+        [ "XDG_SESSION_DESKTOP" "Hyprland" ]
       ];
-
-      exec-once = [
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
-        "systemctl --user enable --now easyeffects"
-        "serpantinumd start"
+      on._args = [
+        "hyprland.start"
+        (lib.generators.mkLuaInline ''
+          function()
+            hl.exec_cmd("wl-paste --type text --watch cliphist store")
+            hl.exec_cmd("wl-paste --type image --watch cliphist store")
+            hl.exec_cmd("systemctl --user enable --now easyeffects")
+          end
+        '')
       ];
     };
   };

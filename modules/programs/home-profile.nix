@@ -10,11 +10,6 @@
       self.modules.homeManager.kitty
       self.modules.homeManager.starship
       self.modules.homeManager.hyprland
-      self.modules.homeManager.hyprlandSettings
-      self.modules.homeManager.hyprlandInput
-      self.modules.homeManager.hyprlandMonitors
-      self.modules.homeManager.hyprlandAutostart
-      self.modules.homeManager.hyprlandKeybinds
       self.modules.homeManager.serpantinum
       self.modules.homeManager.studio-package
       self.modules.homeManager.zen-browser

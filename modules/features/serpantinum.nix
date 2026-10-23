@@ -8,11 +8,17 @@
   flake.modules.homeManager.serpantinum = { config, inputs, lib, pkgs, ... }:
   let
     system = pkgs.stdenv.hostPlatform.system;
+    wallpaperDir = "${config.xdg.userDirs.pictures}/Wallpapers";
     serpantinumPatched = inputs.serpantinum.packages.${system}.default.overrideAttrs (_: {
       postPatch = ''
-        substituteInPlace src/quickshell/widgets/faces/usage/RamFace.qml \
-          --replace-fail 'icon: "\uF538"' \
-            'icon: String.fromCodePoint(0xF035C)'
+        ram_face=src/quickshell/widgets/faces/usage/RamFace.qml
+        if grep -Fq 'icon: "\uF538"' "$ram_face"; then
+          substituteInPlace "$ram_face" \
+            --replace-fail 'icon: "\uF538"' \
+              'icon: String.fromCodePoint(0xF035C)'
+        else
+          grep -Fq 'icon: String.fromCodePoint(0xF035C)' "$ram_face"
+        fi
       '';
     });
   in {
@@ -22,7 +28,7 @@
       package = serpantinumPatched;
       systemd.enable = true;
       settings = {
-        wallpaperDir = "${config.xdg.userDirs.pictures}/Wallpapers";
+        inherit wallpaperDir;
 
         general = {
           language = "en";
@@ -59,7 +65,7 @@
     home.packages = with pkgs; [ adwaita-icon-theme nerd-fonts.symbols-only ];
 
     home.activation.ensureSerpantinumWallpapersDirectory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir -p "${config.xdg.userDirs.pictures}/Wallpapers"
+      mkdir -p "${wallpaperDir}"
     '';
   };
 }

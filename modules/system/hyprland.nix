@@ -4,6 +4,8 @@
     programs.hyprland = {
       enable = true;
       package = pkgs.hyprland;
+      withUWSM = false;
+      xwayland.enable = true;
     };
   };
 }

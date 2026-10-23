@@ -8,69 +8,97 @@
     fileManager = lib.getExe pkgs.yazi;
     workspaces = builtins.genList (index: index + 1) 10;
     workspaceKey = workspace: toString (if workspace == 10 then 0 else workspace);
-    workspaceBinds = lib.concatMap (workspace: [
-      "SUPER, ${workspaceKey workspace}, exec, serpantinum msg workspace ${toString workspace}"
-      "SUPER SHIFT, ${workspaceKey workspace}, exec, serpantinum msg workspace ${toString workspace} move"
+    toLua = lib.generators.toLua { };
+    mkLuaInline = lib.generators.mkLuaInline;
+    commandHandler = command: mkLuaInline "hl.dsp.exec_cmd(${toLua command})";
+    bind = key: command: { _args = [ key (commandHandler command) ]; };
+    bindLua = key: expression: { _args = [ key (mkLuaInline expression) ]; };
+    lockedBind = key: command: {
+      _args = [ key (commandHandler command) { locked = true; } ];
+    };
+    repeatingLockedBind = key: command: {
+      _args = [ key (commandHandler command) { locked = true; repeating = true; } ];
+    };
+    workspaceBinds = lib.concatMap (workspace: let
+      key = workspaceKey workspace;
+      number = toString workspace;
+    in [
+      (bind "SUPER + ${key}" "serpantinum msg workspace ${number}")
+      (bind "SUPER + SHIFT + ${key}" "serpantinum msg workspace ${number} move")
     ]) workspaces;
   in {
-    wayland.windowManager.hyprland.settings = {
-      bind = [
-        "SUPER, left, movefocus, l"
-        "SUPER, right, movefocus, r"
-        "SUPER, up, movefocus, u"
-        "SUPER, down, movefocus, d"
-        "SUPER CTRL, left, movewindow, l"
-        "SUPER CTRL, right, movewindow, r"
-        "SUPER CTRL, up, movewindow, u"
-        "SUPER CTRL, down, movewindow, d"
-        "SUPER SHIFT, left, resizeactive, -50 0"
-        "SUPER SHIFT, right, resizeactive, 50 0"
-        "SUPER SHIFT, up, resizeactive, 0 -50"
-        "SUPER SHIFT, down, resizeactive, 0 50"
-        "SUPER, q, killactive"
-        "SUPER SHIFT, q, exit"
-        "SUPER, f, togglefloating"
-        "SUPER, t, exec, ${terminal}"
-        "SUPER, w, exec, ${browser}"
-        "SUPER, e, exec, ${terminal} -e ${fileManager}"
-        "SUPER, r, exec, serpantinum reload"
-        "SUPER, c, exec, serpantinum msg toggle clipboard"
-        "SUPER, space, exec, serpantinum msg toggle launcher"
-        "SUPER SHIFT, space, exec, serpantinum msg toggle system"
-        "SUPER, b, exec, serpantinum msg toggle system"
-        "SUPER, m, exec, serpantinum msg toggle music"
-        "SUPER ALT, space, exec, serpantinum msg toggle music"
-        "SUPER, p, exec, serpantinum msg toggle wallpaper"
-        "SUPER, o, exec, serpantinum msg toggle wallpaper"
-        "SUPER, d, exec, serpantinum msg toggle calendar"
-        "SUPER, n, exec, serpantinum msg toggle network"
-        "SUPER, v, exec, serpantinum msg toggle clipboard"
-        "SUPER ALT, v, exec, serpantinum msg toggle volume"
-        "SUPER, g, exec, serpantinum msg toggle guide"
-        "SUPER, slash, exec, serpantinum msg toggle settings"
-        "SUPER, comma, exec, serpantinum msg toggle settings"
-      ] ++ workspaceBinds;
-
-      bindm = [
-        "SUPER, mouse:272, movewindow"
-        "SUPER, mouse:273, resizewindow"
-      ];
-
-      bindl = [
-        ", XF86PowerOff, exec, serpantinum lock"
-        "SUPER, s, exec, serpantinum screenshot"
-        "SUPER SHIFT, s, exec, serpantinum screenshot --edit"
-      ];
-
-      bindel = [
-        "SUPER, l, exec, serpantinum lock"
-        ", XF86MonBrightnessDown, exec, serpantinum brightness lower"
-        ", XF86MonBrightnessUp, exec, serpantinum brightness raise"
-        ", XF86AudioMicMute, exec, ${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ", XF86AudioMute, exec, serpantinum volume mute-toggle"
-        ", XF86AudioLowerVolume, exec, serpantinum volume lower"
-        ", XF86AudioRaiseVolume, exec, serpantinum volume raise"
-      ];
-    };
+    wayland.windowManager.hyprland.settings.bind = [
+      (bind "SUPER + left" "hyprctl dispatch movefocus l")
+      (bind "SUPER + right" "hyprctl dispatch movefocus r")
+      (bind "SUPER + up" "hyprctl dispatch movefocus u")
+      (bind "SUPER + down" "hyprctl dispatch movefocus d")
+      (bind "SUPER + CTRL + left" "hyprctl dispatch movewindow l")
+      (bind "SUPER + CTRL + right" "hyprctl dispatch movewindow r")
+      (bind "SUPER + CTRL + up" "hyprctl dispatch movewindow u")
+      (bind "SUPER + CTRL + down" "hyprctl dispatch movewindow d")
+      (bindLua "SUPER + SHIFT + left" "hl.dsp.window.resize({ x = -50, y = 0, relative = true })")
+      (bindLua "SUPER + SHIFT + right" "hl.dsp.window.resize({ x = 50, y = 0, relative = true })")
+      (bindLua "SUPER + SHIFT + up" "hl.dsp.window.resize({ x = 0, y = -50, relative = true })")
+      (bindLua "SUPER + SHIFT + down" "hl.dsp.window.resize({ x = 0, y = 50, relative = true })")
+      (bindLua "SUPER + q" "hl.dsp.window.close()")
+      (bindLua "SUPER + SHIFT + q" "hl.dsp.window.kill()")
+      (bindLua "SUPER + f" ''
+        function()
+          local w = hl.get_active_window()
+          if w == nil then return end
+          if not w.floating then
+            hl.dispatch(hl.dsp.window.float({ action = "set" }))
+            hl.dispatch(hl.dsp.window.resize({ x = 800, y = 600, relative = false }))
+            hl.dispatch(hl.dsp.window.center())
+          else
+            hl.dispatch(hl.dsp.window.float({ action = "unset" }))
+          end
+        end
+      '')
+      (bind "SUPER + t" terminal)
+      (bind "SUPER + w" "zen")
+      (bind "SUPER + e" "${terminal} -e ${fileManager}")
+      (bind "SUPER + r" "serpantinum reload")
+      (bind "SUPER + c" "serpantinum msg toggle clipboard")
+      (bind "SUPER + space" "serpantinum msg toggle launcher")
+      (bind "SUPER + SHIFT + space" "serpantinum msg toggle system")
+      (bind "SUPER + b" "serpantinum msg toggle system")
+      (bind "SUPER + m" "serpantinum msg toggle music")
+      (bind "SUPER + ALT + space" "serpantinum msg toggle music")
+      (bind "SUPER + p" "serpantinum msg toggle wallpaper")
+      (bind "SUPER + o" "serpantinum msg toggle wallpaper")
+      (bind "SUPER + d" "serpantinum msg toggle calendar")
+      (bind "SUPER + n" "serpantinum msg toggle network")
+      (bind "SUPER + v" "serpantinum msg toggle clipboard")
+      (bind "SUPER + ALT + v" "serpantinum msg toggle volume")
+      (bind "SUPER + g" "serpantinum msg toggle guide")
+      (bind "SUPER + slash" "serpantinum msg toggle settings")
+      (bind "SUPER + comma" "serpantinum msg toggle settings")
+    ] ++ workspaceBinds ++ [
+        {
+          _args = [
+            "SUPER + mouse:272"
+            (mkLuaInline "hl.dsp.window.drag()")
+            { mouse = true; }
+          ];
+        }
+        {
+          _args = [
+            "SUPER + mouse:273"
+            (mkLuaInline "hl.dsp.window.resize()")
+            { mouse = true; }
+          ];
+        }
+        (lockedBind "XF86PowerOff" "serpantinum lock")
+        (lockedBind "SUPER + s" "serpantinum screenshot")
+        (lockedBind "SUPER + SHIFT + s" "serpantinum screenshot --full")
+        (repeatingLockedBind "SUPER + l" "serpantinum lock")
+        (repeatingLockedBind "XF86MonBrightnessDown" "serpantinum brightness lower")
+        (repeatingLockedBind "XF86MonBrightnessUp" "serpantinum brightness raise")
+        (lockedBind "XF86AudioMicMute" "serpantinum volume mic-toggle")
+        (repeatingLockedBind "XF86AudioMute" "serpantinum volume mute-toggle")
+        (repeatingLockedBind "XF86AudioLowerVolume" "serpantinum volume lower")
+        (repeatingLockedBind "XF86AudioRaiseVolume" "serpantinum volume raise")
+    ];
   };
 }

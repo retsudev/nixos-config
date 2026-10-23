@@ -22,6 +22,7 @@
       mpv
       adwaita-icon-theme
       cliphist
+      easyeffects
       nerd-fonts.symbols-only
     ];
   };

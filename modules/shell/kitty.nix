@@ -13,6 +13,9 @@
         window_padding_width = 10;
         remember_window_size = false;
       };
+      extraConfig = ''
+        include ~/.config/kitty/colors.conf
+      '';
       shellIntegration.enableFishIntegration = true;
     };
   };

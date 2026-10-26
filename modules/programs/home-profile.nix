@@ -32,7 +32,10 @@
       ];
     };
 
-    fonts.fontconfig.enable = true;
+    fonts.fontconfig = {
+      enable = true;
+      defaultFonts.monospace = [ "Iosevka Nerd Font" ];
+    };
     programs.home-manager.enable = true;
     home.enableNixpkgsReleaseCheck = false;
     services.home-manager.autoExpire = {

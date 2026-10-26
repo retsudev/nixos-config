@@ -4,9 +4,9 @@
     programs.kitty = {
       enable = true;
       font = {
-        name = "JetBrainsMono Nerd Font";
+        name = "Iosevka Nerd Font";
         size = 14;
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = pkgs.nerd-fonts.iosevka;
       };
       settings = {
         shell = "${pkgs.fish}/bin/fish";

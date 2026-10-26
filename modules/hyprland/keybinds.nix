@@ -42,6 +42,7 @@
       (bindLua "SUPER + SHIFT + down" "hl.dsp.window.resize({ x = 0, y = 50, relative = true })")
       (bindLua "SUPER + q" "hl.dsp.window.close()")
       (bindLua "SUPER + SHIFT + q" "hl.dsp.window.kill()")
+      (bind "SUPER + CTRL + f" "hyprctl dispatch fullscreen")
       (bindLua "SUPER + f" ''
         function()
           local w = hl.get_active_window()

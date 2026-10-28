@@ -13,6 +13,8 @@
       rustfmt
       clippy
       jdk21
+      maven
+      gradle
       ant
       lua
       luarocks

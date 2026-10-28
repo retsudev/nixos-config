@@ -1,7 +1,10 @@
-{ self, ... }:
-{
-  flake.modules.nixos.desktop = { config, lib, pkgs, ... }:
-  let
+{self, ...}: {
+  flake.modules.nixos.desktop = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: let
     hyprlandSession = "${pkgs.hyprland}/bin/start-hyprland";
   in {
     imports = [
@@ -32,5 +35,4 @@
       };
     };
   };
-
 }

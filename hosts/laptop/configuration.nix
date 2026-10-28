@@ -1,10 +1,18 @@
-{ self, inputs, ...}: {
-  flake.modules.nixos.laptopConfiguration = {pkgs, lib, ... }: {
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.modules.nixos.laptopConfiguration = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = [
       self.modules.nixos.laptopHardware
     ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = ["nix-command" "flakes"];
     nix.settings.auto-optimise-store = true;
     nix.gc = {
       automatic = true;
@@ -22,7 +30,7 @@
       vim
     ];
 
-    boot.kernelPackages = pkgs.linuxPackages_latest; 
+    boot.kernelPackages = pkgs.linuxPackages_latest;
     networking.hostName = "nixos";
     networking.networkmanager.enable = true;
 
@@ -52,7 +60,7 @@
 
     fonts = {
       enableDefaultPackages = true;
-      packages = with pkgs; [ noto-fonts noto-fonts-color-emoji ];
+      packages = with pkgs; [noto-fonts noto-fonts-color-emoji];
       fontconfig.enable = true;
     };
 
@@ -62,4 +70,3 @@
     system.stateVersion = "26.05";
   };
 }
-

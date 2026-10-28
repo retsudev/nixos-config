@@ -1,6 +1,5 @@
-{ ... }:
-{
-  flake.modules.homeManager.desktop-apps = { pkgs, ... }: {
+{...}: {
+  flake.modules.homeManager.desktop-apps = {pkgs, ...}: {
     home.pointerCursor = {
       enable = true;
       package = pkgs.bibata-cursors;

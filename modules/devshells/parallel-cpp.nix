@@ -1,6 +1,5 @@
-{ ... }:
-{
-  perSystem = { pkgs, ... }: {
+{...}: {
+  perSystem = {pkgs, ...}: {
     devShells.parallel-cpp = pkgs.mkShell {
       packages = [
         pkgs.cmake

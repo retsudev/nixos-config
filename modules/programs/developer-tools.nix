@@ -1,6 +1,5 @@
-{ ... }:
-{
-  flake.modules.homeManager.developer-tools = { pkgs, ... }: {
+{...}: {
+  flake.modules.homeManager.developer-tools = {pkgs, ...}: {
     home.packages = with pkgs; [
       gcc
       alejandra

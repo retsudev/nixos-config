@@ -1,6 +1,5 @@
-{ self, ... }:
-{
-  flake.modules.homeManager.retsudev = { pkgs, ... }: {
+{self, ...}: {
+  flake.modules.homeManager.retsudev = {pkgs, ...}: {
     imports = [
       self.modules.homeManager.cli-tools
       self.modules.homeManager.developer-tools

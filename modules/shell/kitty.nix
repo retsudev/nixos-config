@@ -1,6 +1,5 @@
-{ ... }:
-{
-  flake.modules.homeManager.kitty = { pkgs, ... }: {
+{...}: {
+  flake.modules.homeManager.kitty = {pkgs, ...}: {
     programs.kitty = {
       enable = true;
       font = {

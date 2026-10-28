@@ -1,5 +1,4 @@
-{ ... }:
-let
+{...}: let
   options = {
     general = {
       border_size = 0;
@@ -36,21 +35,89 @@ let
   };
 
   curves = [
-    { name = "smoothWindow"; points = [ [ 0.16 0.77 ] [ 0.33 1.0 ] ]; }
-    { name = "smoothIn"; points = [ [ 0.12 0.8 ] [ 0.39 1.0 ] ]; }
-    { name = "smoothOut"; points = [ [ 0.4 0.0 ] [ 0.6 1.0 ] ]; }
+    {
+      name = "smoothWindow";
+      points = [[0.16 0.77] [0.33 1.0]];
+    }
+    {
+      name = "smoothIn";
+      points = [[0.12 0.8] [0.39 1.0]];
+    }
+    {
+      name = "smoothOut";
+      points = [[0.4 0.0] [0.6 1.0]];
+    }
   ];
   animations = [
-    { leaf = "windows"; enabled = true; speed = 5; bezier = "smoothWindow"; style = "slide"; }
-    { leaf = "windowsIn"; enabled = true; speed = 5; bezier = "smoothIn"; style = "popin 70%"; }
-    { leaf = "windowsOut"; enabled = true; speed = 6; bezier = "smoothOut"; style = "popin 0%"; }
-    { leaf = "layers"; enabled = true; speed = 5; bezier = "smoothWindow"; style = "fade"; }
-    { leaf = "layersIn"; enabled = true; speed = 5; bezier = "smoothIn"; style = "fade"; }
-    { leaf = "layersOut"; enabled = true; speed = 6; bezier = "smoothOut"; style = "fade"; }
-    { leaf = "fade"; enabled = true; speed = 5; bezier = "smoothWindow"; }
-    { leaf = "workspaces"; enabled = true; speed = 5; bezier = "smoothWindow"; style = "slidevert"; }
-    { leaf = "specialWorkspaceIn"; enabled = true; speed = 5; bezier = "smoothIn"; style = "slidefade"; }
-    { leaf = "specialWorkspaceOut"; enabled = true; speed = 6; bezier = "smoothOut"; style = "slidefade"; }
+    {
+      leaf = "windows";
+      enabled = true;
+      speed = 5;
+      bezier = "smoothWindow";
+      style = "slide";
+    }
+    {
+      leaf = "windowsIn";
+      enabled = true;
+      speed = 5;
+      bezier = "smoothIn";
+      style = "popin 70%";
+    }
+    {
+      leaf = "windowsOut";
+      enabled = true;
+      speed = 6;
+      bezier = "smoothOut";
+      style = "popin 0%";
+    }
+    {
+      leaf = "layers";
+      enabled = true;
+      speed = 5;
+      bezier = "smoothWindow";
+      style = "fade";
+    }
+    {
+      leaf = "layersIn";
+      enabled = true;
+      speed = 5;
+      bezier = "smoothIn";
+      style = "fade";
+    }
+    {
+      leaf = "layersOut";
+      enabled = true;
+      speed = 6;
+      bezier = "smoothOut";
+      style = "fade";
+    }
+    {
+      leaf = "fade";
+      enabled = true;
+      speed = 5;
+      bezier = "smoothWindow";
+    }
+    {
+      leaf = "workspaces";
+      enabled = true;
+      speed = 5;
+      bezier = "smoothWindow";
+      style = "slidevert";
+    }
+    {
+      leaf = "specialWorkspaceIn";
+      enabled = true;
+      speed = 5;
+      bezier = "smoothIn";
+      style = "slidefade";
+    }
+    {
+      leaf = "specialWorkspaceOut";
+      enabled = true;
+      speed = 6;
+      bezier = "smoothOut";
+      style = "slidefade";
+    }
   ];
   windowRules = [
     {
@@ -69,16 +136,23 @@ let
       border_size = 0;
     }
   ];
-in
-{
-  flake.modules.homeManager.hyprlandSettings = { ... }: {
+in {
+  flake.modules.homeManager.hyprlandSettings = {...}: {
     wayland.windowManager.hyprland.settings = {
       config = options;
-      curve = map (curve: {
-        _args = [ curve.name { type = "bezier"; points = curve.points; } ];
-      }) curves;
-      animation = map (animation: { _args = [ animation ]; }) animations;
-      window_rule = map (rule: { _args = [ rule ]; }) windowRules;
+      curve =
+        map (curve: {
+          _args = [
+            curve.name
+            {
+              type = "bezier";
+              points = curve.points;
+            }
+          ];
+        })
+        curves;
+      animation = map (animation: {_args = [animation];}) animations;
+      window_rule = map (rule: {_args = [rule];}) windowRules;
     };
   };
 }

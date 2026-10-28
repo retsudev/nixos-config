@@ -1,7 +1,6 @@
-{ inputs, ... }:
-{
-  flake.modules.homeManager.lazyvim = { pkgs, ... }: {
-    imports = [ inputs.lazyvim.homeManagerModules.default ];
+{inputs, ...}: {
+  flake.modules.homeManager.lazyvim = {pkgs, ...}: {
+    imports = [inputs.lazyvim.homeManagerModules.default];
     programs.lazyvim = {
       enable = true;
       configFiles = ./.;

@@ -1,5 +1,4 @@
-{ self, ... }:
-{
+{self, ...}: {
   # This file is the single Home Manager entry point for the Hyprland feature.
   flake.modules.homeManager.hyprland = {
     imports = [
@@ -12,7 +11,7 @@
     ];
   };
 
-  flake.modules.homeManager.hyprlandBase = { ... }: {
+  flake.modules.homeManager.hyprlandBase = {...}: {
     wayland.windowManager.hyprland = {
       enable = true;
       configType = "lua";

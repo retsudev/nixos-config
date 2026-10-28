@@ -1,6 +1,9 @@
-{ ... }:
-{
-  flake.modules.homeManager.cli-tools = { inputs, pkgs, ... }: {
+{...}: {
+  flake.modules.homeManager.cli-tools = {
+    inputs,
+    pkgs,
+    ...
+  }: {
     home.packages = with pkgs; [
       fzf
       bat

@@ -1,5 +1,4 @@
-{ ... }:
-let
+{...}: let
   input = {
     kb_layout = "us,ru";
     kb_options = "grp:alt_shift_toggle";
@@ -14,12 +13,11 @@ let
     direction = "vertical";
     action = "workspace";
   };
-in
-{
-  flake.modules.homeManager.hyprlandInput = { ... }: {
+in {
+  flake.modules.homeManager.hyprlandInput = {...}: {
     wayland.windowManager.hyprland.settings = {
-      config = { inherit input; };
-      gesture = [ { _args = [ gesture ]; } ];
+      config = {inherit input;};
+      gesture = [{_args = [gesture];}];
     };
   };
 }

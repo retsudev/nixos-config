@@ -1,6 +1,9 @@
-{ ... }:
-{
-  flake.modules.homeManager.workflow-tools = { config, pkgs, ... }: {
+{...}: {
+  flake.modules.homeManager.workflow-tools = {
+    config,
+    pkgs,
+    ...
+  }: {
     programs.git = {
       enable = true;
       settings = {
@@ -56,26 +59,25 @@
         };
         group = {
           daily = {
-            paths = [ "daily" ];
+            paths = ["daily"];
             note = {
               filename = "{{format-date now '%d.%m.%Y'}}";
             };
           };
           ideas = {
-            paths = [ "ideas" ];
+            paths = ["ideas"];
             note = {
               filename = "{{format-date now '%Y-%m-%d_%H-%M'}}-{{slug title}}";
             };
           };
           programming = {
-            paths = [ "programming" ];
+            paths = ["programming"];
           };
           university = {
-            paths = [ "university" ];
+            paths = ["university"];
           };
         };
       };
     };
-
   };
 }

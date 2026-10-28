@@ -1,11 +1,10 @@
-{ ... }:
-{
-  flake.modules.homeManager.hyprlandAutostart = { lib, ... }: {
+{...}: {
+  flake.modules.homeManager.hyprlandAutostart = {lib, ...}: {
     wayland.windowManager.hyprland.settings = {
-      env = map (pair: { _args = pair; }) [
-        [ "XDG_CURRENT_DESKTOP" "Hyprland" ]
-        [ "XDG_SESSION_TYPE" "wayland" ]
-        [ "XDG_SESSION_DESKTOP" "Hyprland" ]
+      env = map (pair: {_args = pair;}) [
+        ["XDG_CURRENT_DESKTOP" "Hyprland"]
+        ["XDG_SESSION_TYPE" "wayland"]
+        ["XDG_SESSION_DESKTOP" "Hyprland"]
       ];
       on._args = [
         "hyprland.start"

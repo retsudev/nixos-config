@@ -35,7 +35,7 @@
         };
 
         theme = {
-          fontFamily = "Iosevka Nerd Font";
+          fontFamily = "Adwaita Mono";
           borderRadius = 12;
           matugen = true;
         };

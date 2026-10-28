@@ -14,6 +14,10 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    security.sudo.extraConfig = ''
+      Defaults insults
+    '';
+
     environment.systemPackages = with pkgs; [
       vim
     ];

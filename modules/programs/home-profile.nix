@@ -15,6 +15,7 @@
       self.modules.homeManager.zen-browser
       self.modules.homeManager.codex
       self.modules.homeManager.music-dl
+      self.modules.homeManager.lazyvim
     ];
 
     home = {

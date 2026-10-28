@@ -4,7 +4,6 @@
     specialArgs = { inherit inputs self; };
     modules = [
       self.modules.nixos.laptopConfiguration
-      self.modules.nixos.nixvim
       self.modules.nixos.studio
       self.modules.nixos.desktop
       self.modules.nixos.throne

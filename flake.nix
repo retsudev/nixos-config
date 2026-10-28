@@ -1,5 +1,4 @@
 {
-
   description = "RetsuDevs NixOS dendritic flake";
 
   inputs = {
@@ -12,6 +11,10 @@
     };
 
     nixvim.url = "github:nix-community/nixvim";
+    lazyvim = {
+      url = "github:pfassina/lazyvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # dendritic flake deps
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -31,10 +34,9 @@
     serpantinum.url = "github:ilyamiro/serpantinum";
   };
 
-  # import modules/ automatically
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+  # import flake-parts automatically
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "x86_64-linux"
       ];
@@ -44,6 +46,7 @@
         (inputs.import-tree [
           ./modules
           ./hosts
+          ./lazyvim
         ])
       ];
     };

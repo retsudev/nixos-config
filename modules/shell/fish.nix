@@ -20,6 +20,11 @@
       enableFishIntegration = true;
     };
 
+    programs.fish.functions."cpp-parallel" = {
+      description = "Enter the parallel C++ development shell";
+      body = "nix develop /home/retsudev/nix-config#parallel-cpp $argv";
+    };
+
     home.packages = with pkgs; [ eza ];
   };
 }

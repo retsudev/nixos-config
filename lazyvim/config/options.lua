@@ -1,3 +1,6 @@
+-- Disable Trouble's current document-symbol breadcrumb in Lualine.
+vim.g.trouble_lualine = false
+
 vim.opt.cursorline = true
 vim.opt.relativenumber = false
 vim.opt.statuscolumn = "%s%=%3l | "

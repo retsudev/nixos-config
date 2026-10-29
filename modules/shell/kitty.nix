@@ -9,7 +9,7 @@
       };
       settings = {
         shell = "${pkgs.fish}/bin/fish";
-        window_padding_width = 10;
+        window_padding_width = "8";
         remember_window_size = false;
       };
       extraConfig = ''

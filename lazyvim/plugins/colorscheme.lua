@@ -1,16 +1,18 @@
 return {
   {
-    "ellisonleao/gruvbox.nvim",
+    "ribru17/bamboo.nvim",
+    lazy = false,
     priority = 1000,
-    opts = {
-      terminal_colors = true,
-      transparent_mode = true,
-    },
+    config = function()
+      require("bamboo").setup({
+        style = "multiplex",
+      })
+    end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "bamboo",
     },
   },
 }

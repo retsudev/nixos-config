@@ -3,7 +3,7 @@
   flake.modules.homeManager.hyprland = {
     imports = [
       self.modules.homeManager.hyprlandBase
-      self.modules.homeManager.hyprlandSettings
+      self.modules.homeManager.hyprlandDecorations
       self.modules.homeManager.hyprlandInput
       self.modules.homeManager.hyprlandMonitors
       self.modules.homeManager.hyprlandAutostart

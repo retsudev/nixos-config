@@ -20,6 +20,13 @@
       options = "--delete-older-than 7d";
     };
 
+    services.flatpak.enable = false;
+
+    programs.nh = {
+      enable = true;
+      flake = "/home/retsudev/nix-config";
+    };
+
     nixpkgs.config.allowUnfree = true;
 
     security.sudo.extraConfig = ''

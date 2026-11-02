@@ -10,6 +10,7 @@
     imports = [
       self.modules.nixos.hyprland
       self.modules.nixos.serpantinum
+      self.modules.nixos.file-transport
     ];
 
     options.desktop.autoLoginUser = lib.mkOption {

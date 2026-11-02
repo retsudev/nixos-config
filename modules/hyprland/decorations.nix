@@ -10,6 +10,13 @@
     };
     decoration = {
       rounding = 16;
+      wobble = {
+        enabled = true;
+        stiffness = 180;
+        damping = 16;
+        mass = 1.0;
+        intensity = 0.67;
+      };
       active_opacity = 1.0;
       inactive_opacity = 1.0;
       blur = {
@@ -137,7 +144,7 @@
     }
   ];
 in {
-  flake.modules.homeManager.hyprlandSettings = {...}: {
+  flake.modules.homeManager.hyprlandDecorations = {...}: {
     wayland.windowManager.hyprland.settings = {
       config = options;
       curve =

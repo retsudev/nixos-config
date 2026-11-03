@@ -29,7 +29,6 @@
       packages = with pkgs; [
         corefonts
         font-awesome
-        nerd-fonts.iosevka
       ];
     };
 

@@ -15,6 +15,32 @@
         gc = "git commit";
         gp = "git push";
         n = "nvim";
+        fr = "rm -rf";
+      };
+      functions.rm = {
+        description = "Refuse recursive force removal of filesystem root entries";
+        body = ''
+          set -l force_recursive false
+          set -l root_entry false
+
+          for arg in $argv
+            if test "$arg" = -rf -o "$arg" = -fr
+              set force_recursive true
+            end
+            # Fish expands /* before calling this function, so check for paths
+            # that are direct children of / as well as a literal / argument.
+            if string match -rq '^/[^/]+/?$' -- "$arg"; or test "$arg" = /
+              set root_entry true
+            end
+          end
+
+          if test $force_recursive = true -a $root_entry = true
+            ${pkgs.figlet}/bin/figlet -f "ANSI Shadow" "u need to sleep"
+            return 1
+          end
+
+          command rm $argv
+        '';
       };
       interactiveShellInit = ''
         set -g fish_greeting
@@ -35,6 +61,6 @@
       body = "nix develop /home/retsudev/nix-config#parallel-cpp $argv";
     };
 
-    home.packages = with pkgs; [eza];
+    home.packages = with pkgs; [eza figlet];
   };
 }

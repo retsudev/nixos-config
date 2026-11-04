@@ -6,8 +6,9 @@
       self.modules.homeManager.hyprlandDecorations
       self.modules.homeManager.hyprlandInput
       self.modules.homeManager.hyprlandMonitors
-      self.modules.homeManager.hyprlandAutostart
-      self.modules.homeManager.hyprlandKeybinds
+      self.modules.homeManager.hyprlandBootstrap
+      self.modules.homeManager.hyprlandHotkeys
+      self.modules.homeManager.hyprlandLayouts
     ];
   };
 

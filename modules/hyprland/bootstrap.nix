@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.homeManager.hyprlandAutostart = {lib, ...}: {
+  flake.modules.homeManager.hyprlandBootstrap = {lib, ...}: {
     wayland.windowManager.hyprland.settings = {
       env = map (pair: {_args = pair;}) [
         ["XDG_CURRENT_DESKTOP" "Hyprland"]
@@ -12,7 +12,7 @@
           function()
             hl.exec_cmd("wl-paste --type text --watch cliphist store")
             hl.exec_cmd("wl-paste --type image --watch cliphist store")
-            hl.exec_cmd("systemctl --user enable --now easyeffects")
+            hl.exec_cmd("serpantinum lock")
           end
         '')
       ];

@@ -1,13 +1,5 @@
 {...}: let
   options = {
-    general = {
-      border_size = 0;
-      gaps_in = 6;
-      gaps_out = 10;
-      float_gaps = 6;
-      resize_on_border = true;
-      extend_border_grab_area = 50;
-    };
     decoration = {
       rounding = 16;
       wobble = {

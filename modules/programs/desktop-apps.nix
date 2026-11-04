@@ -12,9 +12,9 @@
     home.packages = with pkgs; [
       mpv
       obsidian
+      vesktop
       adwaita-icon-theme
       cliphist
-      easyeffects
       nerd-fonts.symbols-only
     ];
   };

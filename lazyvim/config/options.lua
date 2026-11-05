@@ -3,7 +3,8 @@ vim.g.trouble_lualine = false
 
 vim.opt.cursorline = true
 vim.opt.relativenumber = false
-vim.opt.statuscolumn = "%s%=%3l "
+vim.opt.signcolumn = "no"
+vim.opt.statuscolumn = "%=%2l "
 
 vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
 	callback = function(event)
@@ -13,65 +14,57 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-	callback = function()
-		for _, group in ipairs({
-			"Normal",
-			"NormalNC",
-			"NormalFloat",
-			"SnacksDashboardNormal",
-			"StatusLine",
-			"StatusLineNC",
-		}) do
-			vim.api.nvim_set_hl(0, group, { bg = "NONE" })
-		end
-		vim.api.nvim_set_hl(0, "SnacksPickerListCursorLine", { link = "Visual" })
-	end,
-})
-
-for _, group in ipairs({
-	"Normal",
-	"NormalNC",
-	"NormalFloat",
-	"SnacksDashboardNormal",
-	"StatusLine",
-	"StatusLineNC",
-}) do
-	vim.api.nvim_set_hl(0, group, { bg = "NONE" })
-end
 vim.api.nvim_set_hl(0, "SnacksPickerListCursorLine", { link = "Visual" })
 
-local dashboard_laststatus
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "snacks_dashboard",
+local function set_picker_transparency()
+	for _, group in ipairs({
+		"SnacksPicker",
+		"SnacksPickerInput",
+		"SnacksPickerList",
+		"SnacksPickerPreview",
+		"SnacksPickerBorder",
+		"SnacksPickerBox",
+		"SnacksPickerTitle",
+		"SnacksPickerFooter",
+	}) do
+		vim.api.nvim_set_hl(0, group, { bg = "NONE", nocombine = true })
+	end
+end
+vim.api.nvim_create_autocmd("ColorScheme", { callback = set_picker_transparency })
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VeryLazy",
+	callback = set_picker_transparency,
+})
+set_picker_transparency()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = function()
-		if dashboard_laststatus == nil then
-			dashboard_laststatus = vim.g.lualine_laststatus or vim.o.laststatus
-		end
-		vim.opt.laststatus = 0
-		vim.opt_local.statusline = ""
+		vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+		vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
 	end,
 })
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
 
+local dashboard_laststatus
+local function hide_dashboard_statusline()
+	if vim.bo.filetype ~= "snacks_dashboard" then
+		return
+	end
+	if dashboard_laststatus == nil then
+		dashboard_laststatus = vim.g.lualine_laststatus or vim.o.laststatus
+	end
+	vim.opt.laststatus = 0
+	vim.opt_local.statusline = ""
+end
+
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "WinEnter" }, {
+	callback = hide_dashboard_statusline,
+})
 vim.api.nvim_create_autocmd("User", {
 	pattern = "VeryLazy",
 	callback = function()
-		if vim.bo.filetype == "snacks_dashboard" then
-			vim.opt.laststatus = 0
-			vim.opt_local.statusline = ""
-			for _, group in ipairs({
-				"StatusLine",
-				"StatusLineNC",
-				"lualine_a_normal",
-				"lualine_b_normal",
-				"lualine_c_normal",
-				"lualine_x_normal",
-				"lualine_y_normal",
-				"lualine_z_normal",
-			}) do
-				vim.api.nvim_set_hl(0, group, { bg = "NONE" })
-			end
-		end
+		vim.schedule(hide_dashboard_statusline)
 	end,
 })
 

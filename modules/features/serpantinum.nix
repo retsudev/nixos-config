@@ -42,6 +42,7 @@
           fontFamily = "Adwaita Mono";
           borderRadius = 12;
           matugen = true;
+          apps = ["cava" "gtk" "kitty" "qt" "neovim" "starship"];
         };
 
         notifications = {

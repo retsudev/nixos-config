@@ -13,7 +13,7 @@
         remember_window_size = false;
       };
       extraConfig = ''
-        include ~/.config/kitty/colors.conf
+        include ~/.config/kitty/themes/serpantinum.conf
       '';
       shellIntegration.enableFishIntegration = true;
     };

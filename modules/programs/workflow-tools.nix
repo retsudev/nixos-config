@@ -16,6 +16,17 @@
       };
     };
 
+    programs.jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = "retsudev";
+          email = "gamershpw@gmail.com";
+        };
+        ui.editor = "nvim";
+      };
+    };
+
     programs.lazygit = {
       enable = true;
       settings.os.editPreset = "nvim";

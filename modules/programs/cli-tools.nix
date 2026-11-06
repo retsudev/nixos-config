@@ -8,6 +8,7 @@
       fzf
       bat
       git
+      jujutsu
       ripgrep
       fd
       jq

@@ -49,8 +49,8 @@ in {
         };
       };
       bind = [
-      (luaBind "SUPER + CTRL + F" ''hl.dsp.window.fullscreen({ action = 'toggle' })'')
-      (luaBind "SUPER + SHIFT + F" ''hl.dsp.window.fullscreen({ action = 'toggle' })'')
+      (luaBind "SUPER + CTRL + F" ''hl.dispatch(hl.dsp.window.fullscreen({ action = "toggle" }))'')
+      (luaBind "SUPER + SHIFT + F" ''hl.dispatch(hl.dsp.window.fullscreen({ action = "toggle" }))'')
       (luaBind "SUPER + f" ''
         local w = hl.get_active_window()
         if w == nil then return end
